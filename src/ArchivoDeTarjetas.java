@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//Fabri Fabri 
+
 public class ArchivoDeTarjetas {
 	    
     private HashMap<Long, Tarjeta> mapaTarjeta;
