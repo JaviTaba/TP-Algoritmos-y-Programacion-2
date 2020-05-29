@@ -1,5 +1,5 @@
 public class Cliente {
-        private long cuil;
+
         private long cuit;
         private Tarjeta tarjeta;
         private CajaAhorroPesos ars = null;
