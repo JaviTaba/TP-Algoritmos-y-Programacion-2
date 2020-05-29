@@ -3,8 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 public class ArchivoDeTarjetas {
@@ -16,6 +15,7 @@ public class ArchivoDeTarjetas {
     public ArchivoDeTarjetas() {
     	cuitTarjeta = new HashMap<Tarjeta, Long>();      
     	cuitCliente = new HashMap<Long,Cliente>();
+    	lectorDeTarjetas();
     }
 
 	public void lectorDeTarjetas(){
