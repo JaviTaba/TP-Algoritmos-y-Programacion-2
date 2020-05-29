@@ -1,12 +1,12 @@
 public class Cliente {
-        private long cuil;
+        private long cuit;
         private Tarjeta tarjeta;
 	private CajaAhorroPesos ars = null;
         private CajaAhorroUSD usd = null;
         private CuentaCorriente cc = null;
         
-	public Cliente(long cuil, Tarjeta tarjeta) throws ExcepcionCliente {
-	this.cuil=cuil;
+	public Cliente(long cuit, Tarjeta tarjeta) throws ExcepcionCliente {
+	this.cuit=cuit;
         this.tarjeta=tarjeta;
         }
         

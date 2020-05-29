@@ -9,10 +9,13 @@ import java.util.logging.Logger;
 
 public class ArchivoDeTarjetas {
 	    
-    private HashMap<Long, Tarjeta> mapaTarjeta;
+    private HashMap<Tarjeta, Long> cuitTarjeta;
+    private HashMap<Long, Cliente> cuitCliente;
+  
     
     public ArchivoDeTarjetas() {
-    	mapaTarjeta = new HashMap<Long, Tarjeta>();      
+    	cuitTarjeta = new HashMap<Tarjeta, Long>();      
+    	cuitCliente = new HashMap<Long,Cliente>();
     }
 
 	public void lectorDeTarjetas(){
@@ -29,6 +32,18 @@ public class ArchivoDeTarjetas {
             	br.readLine();
             	
             long cuitDelUsuario = Long.parseLong(spliteado[2]);
+            int tarjetaDelUsuario = Integer.parseInt(spliteado[0]);
+            int pinDeLaTarjeta = Integer.parseInt(spliteado[1]);
+            
+            Tarjeta tarjeta = new Tarjeta(tarjetaDelUsuario, pinDeLaTarjeta);
+            Cliente cliente = new Cliente(cuitDelUsuario, tarjeta);
+            
+            cuitTarjeta.put(tarjeta, cuitDelUsuario);
+            cuitCliente.put(cuitDelUsuario, cliente);	
+            
+            br.readLine();
+            
+            
             
             
             }
@@ -38,7 +53,12 @@ public class ArchivoDeTarjetas {
         } catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+        
+        
     }
     
 }
