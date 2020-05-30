@@ -9,12 +9,19 @@ public class PruebaArchivo {
 	private ArchivoDeClientes clientes;
 	
 	@Test
-	public void validoCreacion() throws IOException {
+	public void validoCreacionDeArchivoDeTarjetas() throws IOException {
 		tarjetas = new ArchivoDeTarjetas();
 		
 	}
 	
+	@Test
+	public void validoCreacionDeArchivoDeCuentas() throws IOException {
+		cuentas = new ArchivoDeCuentas();
+	}
 	
-	
+	@Test
+	public void validoCreacionDeArchivoDeClientes() throws IOException {
+		clientes = new ArchivoDeClientes();
+	}
 	
 }

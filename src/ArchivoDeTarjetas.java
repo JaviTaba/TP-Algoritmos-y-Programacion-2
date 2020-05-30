@@ -12,14 +12,14 @@ public class ArchivoDeTarjetas {
     private HashMap<Long, Cliente> cuitCliente;
   
     
-    public ArchivoDeTarjetas() throws IOException {
+    public ArchivoDeTarjetas() {
     	cuitTarjeta = new HashMap<Tarjeta, Long>();      
     	cuitCliente = new HashMap<Long,Cliente>();
     	lectorDeTarjetas();
     }
 
 
-	private void lectorDeTarjetas() throws IOException {
+	private void lectorDeTarjetas() {
 		
         try {
         	BufferedReader br = new BufferedReader(new FileReader("tarjetas.txt"));
@@ -28,7 +28,7 @@ public class ArchivoDeTarjetas {
         		
 	            String linea = br.readLine();
 	            
-	            while(linea != null) {
+	            while (linea != null) {
 	            	
 	            	String[] spliteado = linea.split(",");
 	            	
@@ -49,16 +49,16 @@ public class ArchivoDeTarjetas {
 	            
         	} finally {
         		br.close();
-        	  }
+        	  	}
             
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
+			ex.printStackTrace();
+		} catch (Exception ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
         
         
