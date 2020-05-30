@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class ArchivoDeCuentas {
 
 	
-	private void lectorDeCuentas() throws IOException, NumberFormatException, ExcepcionCuenta {
+	private void lectorDeCuentas() throws IOException, ExcepcionCuenta {
 		
 		FileReader fr = new FileReader("cuentas.txt");
 		BufferedReader br = new BufferedReader(fr);
