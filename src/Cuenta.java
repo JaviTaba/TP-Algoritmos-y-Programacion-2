@@ -7,7 +7,7 @@ public abstract class Cuenta {
     public double descubierto;
     
     
-    public Cuenta (String alias, double saldo) {
+    public Cuenta (String alias, double saldo) throws ExcepcionCuenta {
     	
       
        this.alias = alias;
