@@ -1,7 +1,6 @@
 public class Cliente {
-      
+
         private long cuit;
-        private Tarjeta tarjeta;
         private CajaAhorroPesos ars = null;
         private CajaAhorroUSD usd = null;
         private CuentaCorriente cc = null;
@@ -26,6 +25,8 @@ public class Cliente {
         }
         
        
-	
+	public long getCuit() {
+		return cuit;
+	}
 	
 }
