@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class ArchivoDeClientes {
 	
 	
-	HashMap<String, Cliente> aliasCliente;
+	private HashMap<String, Cliente> aliasCliente;
 	
 	
 	public ArchivoDeClientes() {
@@ -29,7 +29,7 @@ public class ArchivoDeClientes {
 					
 					String[] spliteado = linea.split(",");
 					
-					aliasCliente.put(spliteado[1], cliente.getCuitCliente().get(Long.parseLong(spliteado[1])) );
+					aliasCliente.put(spliteado[1], cliente.getCuitCliente().get(Long.parseLong(spliteado[0])) );
 					
 					linea = br.readLine();
 				}

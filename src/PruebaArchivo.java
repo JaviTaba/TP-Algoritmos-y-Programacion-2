@@ -11,7 +11,8 @@ public class PruebaArchivo {
 	@Test
 	public void validoCreacionDeArchivoDeTarjetas() throws IOException {
 		tarjetas = new ArchivoDeTarjetas();
-		
+		System.out.println(tarjetas.getCuitCliente());
+		System.out.println(tarjetas.getCuitTarjeta());
 	}
 	
 	@Test
@@ -22,6 +23,7 @@ public class PruebaArchivo {
 	@Test
 	public void validoCreacionDeArchivoDeClientes() throws IOException {
 		clientes = new ArchivoDeClientes();
+		System.out.println(clientes.getAliasCliente());
 	}
 	
 }
