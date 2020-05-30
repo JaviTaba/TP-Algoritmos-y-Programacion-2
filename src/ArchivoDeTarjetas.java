@@ -12,46 +12,47 @@ public class ArchivoDeTarjetas {
     private HashMap<Long, Cliente> cuitCliente;
   
     
-    public ArchivoDeTarjetas() {
+    public ArchivoDeTarjetas() throws IOException {
     	cuitTarjeta = new HashMap<Tarjeta, Long>();      
     	cuitCliente = new HashMap<Long,Cliente>();
     	lectorDeTarjetas();
     }
 
 
-	public void lectorDeTarjetas(){
+	private void lectorDeTarjetas() throws IOException {
+		
         try {
-        	  			
-        			
-        	FileReader fr = new FileReader("archivos/tarjetas.txt");
-            BufferedReader br = new BufferedReader(fr);
-            
-            String linea = br.readLine();
-            
-            while(linea != null) {
-            	String[] spliteado = linea.split(",");
-            	
-            	
-            long cuitDelUsuario = Long.parseLong(spliteado[2]);
-            int tarjetaDelUsuario = Integer.parseInt(spliteado[0]);
-            int pinDeLaTarjeta = Integer.parseInt(spliteado[1]);
-            
-            Tarjeta tarjeta = new Tarjeta(tarjetaDelUsuario, pinDeLaTarjeta);
-            Cliente cliente = new Cliente(cuitDelUsuario, tarjeta);
-            
-            cuitTarjeta.put(tarjeta, cuitDelUsuario);
-            cuitCliente.put(cuitDelUsuario, cliente);	
-            
-            br.readLine();
-            
-            
-            
-            
-            }
-            br.close();
+        	BufferedReader br = new BufferedReader(new FileReader("tarjetas.txt"));
+        	
+        	try {
+        		
+	            String linea = br.readLine();
+	            
+	            while(linea != null) {
+	            	
+	            	String[] spliteado = linea.split(",");
+	            	
+	            	
+		            long cuitDelUsuario = Long.parseLong(spliteado[2]);
+		            int tarjetaDelUsuario = Integer.parseInt(spliteado[0]);
+		            int pinDeLaTarjeta = Integer.parseInt(spliteado[1]);
+		            
+		            Tarjeta tarjeta = new Tarjeta(tarjetaDelUsuario, pinDeLaTarjeta);
+		            Cliente cliente = new Cliente(cuitDelUsuario, tarjeta);
+		            
+		            cuitTarjeta.put(tarjeta, cuitDelUsuario);
+		            cuitCliente.put(cuitDelUsuario, cliente);	
+		            
+		            linea = br.readLine();
+	                        
+	            } 
+	            
+        	} finally {
+        		br.close();
+        	  }
             
         } catch (FileNotFoundException ex) {
-            System.out.println("No se encontro el archivo");
+            ex.printStackTrace();
         } catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

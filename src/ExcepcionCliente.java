@@ -1,4 +1,3 @@
-
 public class ExcepcionCliente extends Exception {
 		
 	

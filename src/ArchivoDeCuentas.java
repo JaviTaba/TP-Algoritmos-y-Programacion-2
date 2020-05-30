@@ -7,6 +7,7 @@ public class ArchivoDeCuentas {
 
 	
 	public void lectorDeCuentas() throws IOException {
+		
 		FileReader fr = new FileReader("archivos/cuentas.txt");
 		BufferedReader br = new BufferedReader(fr);
 		String linea = br.readLine();

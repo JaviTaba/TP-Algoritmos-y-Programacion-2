@@ -5,16 +5,17 @@ import java.io.IOException;
 
 
 public class LectorTarjeta {
+	
     
     
-    public LectorTarjeta(String tarjeta){
+    public LectorTarjeta(String tarjeta) throws IOException{
         
     }
     
     private boolean validadorDeExistenciaDeTarjeta(String tarjeta) throws IOException {
 		
 		try {
-			BufferedReader lector = new BufferedReader(new FileReader("tarjetas/tarjetas.txt"));
+			BufferedReader lector = new BufferedReader(new FileReader("archivos/tarjetas.txt"));
 			
 			
 			

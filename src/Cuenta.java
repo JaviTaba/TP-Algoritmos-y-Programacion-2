@@ -7,7 +7,7 @@ public abstract class Cuenta {
     public double descubierto;
     
     
-    public Cuenta( String alias, double saldo) {
+    public Cuenta (String alias, double saldo) {
     	
       
        this.alias = alias;
@@ -16,11 +16,11 @@ public abstract class Cuenta {
     }
     
     
-    public String obtenerAlias() {
+    public String getAlias() {
     	return alias;
     }
     
-    public double obtenerSaldo() {
+    public double getSaldo() {
     	return saldo;
     }
     

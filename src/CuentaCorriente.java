@@ -10,6 +10,8 @@ public class CuentaCorriente extends Pesos {
         
     }
     
-    
+    public double getDescubierto() {
+    	return descubierto;
+    }
     
 }

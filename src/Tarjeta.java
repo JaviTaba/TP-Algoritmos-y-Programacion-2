@@ -1,14 +1,14 @@
 public class Tarjeta {
 	
-    public int numero;
+    public int numeroDeTarjeta ;
     public int pin;
     
     
     
-    public Tarjeta(int numero, int pin) throws ExcepcionTarjeta {
+    public Tarjeta (int numero, int pin) throws ExcepcionTarjeta {
         if (contadorCaracteres(numero) == 8 && contadorCaracteres(pin) == 4) {
         	
-            this.numero=numero;
+            this.numeroDeTarjeta = numero;
             this.pin = pin;
             
         } 
@@ -20,6 +20,14 @@ public class Tarjeta {
         
     }
     
+    
+    public int getNumeroDeTarjeta() {
+    	return numeroDeTarjeta;
+    }
+    
+    public int getPin() {
+    	return pin;
+    }
     
     
     /**
