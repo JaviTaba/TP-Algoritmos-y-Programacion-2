@@ -6,14 +6,12 @@ import java.util.HashMap;
 public class ArchivoDeClientes {
 	
 	HashMap<String, Cliente> aliasCliente;
-	ArchivoDeTarjetas cliente;
 	
-	
-	public void lectorClientes() throws IOException {
-		FileReader fr = new FileReader("archivos/clientes.txt");
+	private void lectorClientes() throws IOException {
+		FileReader fr = new FileReader("clientes.txt");
 		BufferedReader br = new BufferedReader(fr);
 		aliasCliente = new HashMap<>();
-		this.cliente = new ArchivoDeTarjetas();		
+		ArchivoDeTarjetas cliente = new ArchivoDeTarjetas();		
 		
 		
 		String linea = br.readLine();

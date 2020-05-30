@@ -6,9 +6,9 @@ import java.util.HashMap;
 public class ArchivoDeCuentas {
 
 	
-	public void lectorDeCuentas() throws IOException {
+	private void lectorDeCuentas() throws IOException {
 		
-		FileReader fr = new FileReader("archivos/cuentas.txt");
+		FileReader fr = new FileReader("cuentas.txt");
 		BufferedReader br = new BufferedReader(fr);
 		String linea = br.readLine();
 		ArchivoDeClientes usar2 = new ArchivoDeClientes();
