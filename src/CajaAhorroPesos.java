@@ -1,8 +1,8 @@
 public class CajaAhorroPesos extends Pesos{
     
-    public CajaAhorroPesos(int tipo, String alias, double saldo) {
+    public CajaAhorroPesos( String alias, double saldo) {
     	
-    	super(tipo, alias, saldo);
+    	super(alias, saldo);
     	
     }
     

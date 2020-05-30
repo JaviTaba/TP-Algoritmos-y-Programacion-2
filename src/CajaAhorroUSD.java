@@ -1,8 +1,8 @@
 public class CajaAhorroUSD extends Cuenta{
     
-    public CajaAhorroUSD(int tipo, String alias, double saldo){
+    public CajaAhorroUSD(String alias, double saldo){
     	
-        super(tipo, alias, saldo);
+        super(alias, saldo);
         
     }
     

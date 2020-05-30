@@ -18,18 +18,19 @@ public class ArchivoDeTarjetas {
     	lectorDeTarjetas();
     }
 
+
 	public void lectorDeTarjetas(){
         try {
         	  			
         			
-        	FileReader fr = new FileReader("tarjetas.txt");
+        	FileReader fr = new FileReader("archivos/tarjetas.txt");
             BufferedReader br = new BufferedReader(fr);
             
             String linea = br.readLine();
             
             while(linea != null) {
             	String[] spliteado = linea.split(",");
-            	br.readLine();
+            	
             	
             long cuitDelUsuario = Long.parseLong(spliteado[2]);
             int tarjetaDelUsuario = Integer.parseInt(spliteado[0]);
@@ -47,6 +48,7 @@ public class ArchivoDeTarjetas {
             
             
             }
+            br.close();
             
         } catch (FileNotFoundException ex) {
             System.out.println("No se encontro el archivo");
@@ -60,5 +62,18 @@ public class ArchivoDeTarjetas {
         
         
     }
-    
+	
+	
+	
+	public HashMap<Tarjeta, Long> getCuitTarjeta() {
+		return cuitTarjeta;
+	}
+
+	public HashMap<Long, Cliente> getCuitCliente() {
+		return cuitCliente;
+	}
+
+
+	
+	
 }

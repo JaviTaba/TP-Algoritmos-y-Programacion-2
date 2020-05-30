@@ -1,5 +1,5 @@
 public class Cliente {
-        private long cuil;
+      
         private long cuit;
         private Tarjeta tarjeta;
         private CajaAhorroPesos ars = null;
@@ -24,6 +24,8 @@ public class Cliente {
         public void asociarCuentaCorriente(CuentaCorriente cuenta){
             this.cc = cuenta;
         }
+        
+       
 	
 	
 }
