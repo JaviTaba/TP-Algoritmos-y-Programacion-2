@@ -31,17 +31,17 @@ public class ArchivoDeCuentas {
 						
 					case"01":
 						CajaAhorroPesos cuenta = new CajaAhorroPesos(spliteado[1], Double.parseDouble(spliteado[2]));
-						clienteConAlias.get(spliteado[1]).asociarPesos(cuenta);
+						clienteConAlias.put(cuenta.getAlias(), usar2.getAliasCliente().get(cuenta.getAlias()));
 						break;
 						
 					case"02":
 						CuentaCorriente cuenta2 = new CuentaCorriente(spliteado[1],Double.parseDouble(spliteado[2]), Double.parseDouble(spliteado[3]));
-						clienteConAlias.get(spliteado[1]).asociarCuentaCorriente(cuenta2);
+						clienteConAlias.put(cuenta2.getAlias(), usar2.getAliasCliente().get(cuenta2.getAlias()));
 						break;
 						
 					case"03":
 						CajaAhorroUSD cuenta3 = new CajaAhorroUSD(spliteado[1], Double.parseDouble(spliteado[2]));
-						clienteConAlias.get(spliteado[1]).asociarUSD(cuenta3);
+						clienteConAlias.put(cuenta3.getAlias(), usar2.getAliasCliente().get(cuenta3.getAlias()));
 						break;
 				    } 
 					
@@ -66,6 +66,10 @@ public class ArchivoDeCuentas {
 		
 		
 		
+	}
+	
+	public HashMap<String, Cliente> getClienteAlias(){
+		return clienteConAlias;
 	}
 
 }

@@ -8,16 +8,11 @@ public class PruebaArchivo {
 	private ArchivoDeCuentas cuentas;
 	private ArchivoDeClientes clientes;
 	
-	@Test
-	public void validoCreacionDeArchivoDeTarjetas() throws IOException {
-		tarjetas = new ArchivoDeTarjetas();
-		System.out.println(tarjetas.getCuitCliente());
-		System.out.println(tarjetas.getCuitTarjeta());
-	}
 	
 	@Test
 	public void validoCreacionDeArchivoDeCuentas() throws IOException {
 		cuentas = new ArchivoDeCuentas();
+		System.out.println(cuentas.getClienteAlias());
 	}
 	
 	@Test
