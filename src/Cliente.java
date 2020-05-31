@@ -23,12 +23,23 @@ public class Cliente {
             this.ars = cuenta;            
         }
         
+        public CajaAhorroPesos getArs() {
+        	return this.ars;
+        }
+        
         public void asociarUSD(CajaAhorroUSD cuenta){
             this.usd = cuenta;
         }
         
+        public CajaAhorroUSD getUSD() {
+        	return this.usd;
+        }
         public void asociarCuentaCorriente(CuentaCorriente cuenta){
             this.cc = cuenta;
+        }
+        
+        public CuentaCorriente getCC() {
+        	return this.cc;
         }
         
        

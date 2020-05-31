@@ -1,7 +1,7 @@
 public abstract class Cuenta {
 	
 	
-  
+	ArchivoDeCuentas mapaCuentas;
     public String alias;
     public double saldo;
     public double descubierto;
@@ -9,7 +9,7 @@ public abstract class Cuenta {
     
     public Cuenta (String alias, double saldo) throws ExcepcionCuenta {
     	
-      
+       mapaCuentas = new ArchivoDeCuentas();
        this.alias = alias;
        this.saldo = saldo;
        
@@ -24,6 +24,19 @@ public abstract class Cuenta {
     	return saldo;
     }
     
+    protected boolean verificarMonto(int monto) {
+    	if (monto>0) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    protected boolean verificarSaldo(int monto) {
+    	if (saldo>monto) {
+    		return true;
+    	}
+    	return false;
+    }
     
     
 }
