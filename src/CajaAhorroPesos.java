@@ -17,23 +17,26 @@ public class CajaAhorroPesos extends Pesos{
 	}
 
 	@Override
-	public void transferir(int monto) {
+	public void transferir(Cliente cliente, int monto) {
 		if(verificarMonto(monto) && verificarSaldo(monto)) {
 			saldo -= monto;
-			mapaCuentas.getClienteAlias().get(alias).getArs().depositar(monto);
+			cliente.getCC().depositar(monto);
 		}
 		//hay que agregar la parte de ticket y modificar el txt
 	}
 
 
 	@Override
-	public void comprarUSD(int monto) {
+	public void comprarUSD(Cliente cliente,int monto) {
 		int sinImpuestos = monto*70;
 		int conImpuestos = sinImpuestos+= sinImpuestos*0.3;
 		if(verificarMonto(monto) && verificarSaldo(monto)) {
+			if(cliente.getUSD()!= null) {
+				saldo-= conImpuestos;
+				cliente.getUSD().depositar(monto);
+				
+			}
 			
-			saldo-= conImpuestos;
-			mapaCuentas.getClienteAlias().get(alias).getUSD().depositar(monto);
 			//hay que agregar la parte de ticket y modificar el txt
 		
 		}

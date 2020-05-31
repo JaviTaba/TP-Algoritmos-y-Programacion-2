@@ -7,11 +7,11 @@ import java.util.HashMap;
 public class ArchivoDeClientes {
 	
 	
-	private HashMap<String, Cliente> aliasCliente;
+	private HashMap<String, Long> aliasCuit;
 	
 	
 	public ArchivoDeClientes() {
-		aliasCliente = new HashMap<String, Cliente>();
+		aliasCuit = new HashMap<String, Long>();
 		lectorDeClientes();
 		
 	}
@@ -22,14 +22,14 @@ public class ArchivoDeClientes {
 			BufferedReader br = new BufferedReader(new FileReader("clientes.txt"));
 			
 			try {
-				ArchivoDeTarjetas cliente = new ArchivoDeTarjetas();		
+				
 				String linea = br.readLine();
 				
 				while(linea != null) {
 					
 					String[] spliteado = linea.split(",");
 					
-					aliasCliente.put(spliteado[1], cliente.getCuitCliente().get(Long.parseLong(spliteado[0])) );
+					aliasCuit.put(spliteado[1], Long.parseLong((spliteado[0])) );
 					
 					linea = br.readLine();
 				}
@@ -54,8 +54,8 @@ public class ArchivoDeClientes {
 	}
 
 
-	public HashMap<String, Cliente> getAliasCliente() {
-		return aliasCliente;
+	public HashMap<String, Long> getAliasCuit() {
+		return aliasCuit;
 	}
 
 }

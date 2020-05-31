@@ -41,7 +41,7 @@ public class ArchivoDeTarjetas {
 		            Cliente cliente = new Cliente(cuitDelUsuario, tarjeta);
 		            
 		            cuitTarjeta.put(tarjeta, cuitDelUsuario);
-		            cuitCliente.put(cuitDelUsuario, cliente);	
+		            cuitCliente.put(cuitDelUsuario, cliente);
 		            
 		            linea = br.readLine();
 	                        

@@ -1,15 +1,15 @@
 public abstract class Cuenta {
 	
 	
-	ArchivoDeCuentas mapaCuentas;
+	
     public String alias;
     public double saldo;
-    public double descubierto;
+   
     
     
     public Cuenta (String alias, double saldo) throws ExcepcionCuenta {
     	
-       mapaCuentas = new ArchivoDeCuentas();
+      
        this.alias = alias;
        this.saldo = saldo;
        

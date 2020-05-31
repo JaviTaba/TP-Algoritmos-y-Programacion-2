@@ -5,11 +5,16 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class ArchivoDeCuentas {
-	private HashMap<String, Cliente> clienteConAlias;
+	private ArchivoDeClientes clientes;
+	private ArchivoDeTarjetas tarjetas;
 	
 	public ArchivoDeCuentas() {
-		clienteConAlias = new HashMap<String, Cliente>();
+		clientes = new ArchivoDeClientes();
+		tarjetas = new ArchivoDeTarjetas();
+		
+		
 		lectorDeCuentas();
+		
 	}
 	
 	private void lectorDeCuentas() {
@@ -20,28 +25,34 @@ public class ArchivoDeCuentas {
 			try {
 			
 				String linea = br.readLine();
-				ArchivoDeClientes usar2 = new ArchivoDeClientes();
+				
 				
 		
 		
 				while(linea != null) {
 					String[] spliteado = linea.split(",");
-			
-					switch(spliteado[0]) {
+					int tipo = Integer.parseInt(spliteado[0]);
+					switch(tipo) {
 						
-					case"01":
-						CajaAhorroPesos cuenta = new CajaAhorroPesos(spliteado[1], Double.parseDouble(spliteado[2]));
-						clienteConAlias.put(cuenta.getAlias(), usar2.getAliasCliente().get(cuenta.getAlias()));
+					case 01:
+						Long cuit = clientes.getAliasCuit().get(spliteado[1]);
+						Cliente cliente = tarjetas.getCuitCliente().get(cuit);
+						cliente.asociarPesos(spliteado[1], Double.parseDouble(spliteado[2]));
+						tarjetas.getCuitCliente().put(cuit, cliente);
 						break;
 						
-					case"02":
-						CuentaCorriente cuenta2 = new CuentaCorriente(spliteado[1],Double.parseDouble(spliteado[2]), Double.parseDouble(spliteado[3]));
-						clienteConAlias.put(cuenta2.getAlias(), usar2.getAliasCliente().get(cuenta2.getAlias()));
+					case 02:
+						Long cuit2 = clientes.getAliasCuit().get(spliteado[1]);
+						Cliente cliente2 = tarjetas.getCuitCliente().get(cuit2);
+						cliente2.asociarCuentaCorriente(spliteado[1], Double.parseDouble(spliteado[2]), Double.parseDouble(spliteado[3]));
+						tarjetas.getCuitCliente().put(cuit2, cliente2);
 						break;
 						
-					case"03":
-						CajaAhorroUSD cuenta3 = new CajaAhorroUSD(spliteado[1], Double.parseDouble(spliteado[2]));
-						clienteConAlias.put(cuenta3.getAlias(), usar2.getAliasCliente().get(cuenta3.getAlias()));
+					case 03:
+						Long cuit3 = clientes.getAliasCuit().get(spliteado[1]);
+						Cliente cliente3 = tarjetas.getCuitCliente().get(cuit3);
+						cliente3.asociarUSD(spliteado[1], Double.parseDouble(spliteado[2]));
+						tarjetas.getCuitCliente().put(cuit3, cliente3);
 						break;
 				    } 
 					
@@ -68,8 +79,6 @@ public class ArchivoDeCuentas {
 		
 	}
 	
-	public HashMap<String, Cliente> getClienteAlias(){
-		return clienteConAlias;
-	}
+
 
 }

@@ -19,23 +19,23 @@ public class Cliente {
         
 	}
 	
-        public void asociarPesos(CajaAhorroPesos cuenta){
-            this.ars = cuenta;            
+        public void asociarPesos(String alias, Double saldo) throws ExcepcionCuenta{
+            this.ars = new CajaAhorroPesos(alias, saldo);          
         }
         
         public CajaAhorroPesos getArs() {
         	return this.ars;
         }
         
-        public void asociarUSD(CajaAhorroUSD cuenta){
-            this.usd = cuenta;
+        public void asociarUSD(String alias, Double saldo) throws ExcepcionCuenta{
+            this.usd = new CajaAhorroUSD(alias, saldo);
         }
         
         public CajaAhorroUSD getUSD() {
         	return this.usd;
         }
-        public void asociarCuentaCorriente(CuentaCorriente cuenta){
-            this.cc = cuenta;
+        public void asociarCuentaCorriente(String alias, Double saldo, Double descubierto) throws ExcepcionCuenta{
+            this.cc = new CuentaCorriente(alias, saldo, descubierto);
         }
         
         public CuentaCorriente getCC() {

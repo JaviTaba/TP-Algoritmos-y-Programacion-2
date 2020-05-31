@@ -4,6 +4,8 @@ public abstract class Pesos extends Cuenta implements TransaccionPesos {
         super(alias, saldo);
     }
     
+   
+    
 
 }
 
