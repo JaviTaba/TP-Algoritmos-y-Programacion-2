@@ -11,6 +11,3 @@ public abstract interface TransaccionPesos {
 	
 	
 }
-//de nazi, voy a comer, ya vuelvo. 
-
-//ya committee las clases, hagan pull
