@@ -1,6 +1,27 @@
 public class Tarjeta {
 	
-    public int numeroDeTarjeta ;
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numeroDeTarjeta;
+		result = prime * result + pin;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Tarjeta miTarjeta = (Tarjeta) obj;
+		
+		if(miTarjeta.getPin()==this.pin) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+
+	public int numeroDeTarjeta ;
     public int pin;
     
     

@@ -17,6 +17,14 @@ public class ArchivoDeCuentas {
 		
 	}
 	
+	public ArchivoDeClientes getClientes() {
+		return clientes;
+	}
+
+	public ArchivoDeTarjetas getTarjetas() {
+		return tarjetas;
+	}
+
 	private void lectorDeCuentas() {
 		
 		try {

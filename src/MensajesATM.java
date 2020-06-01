@@ -37,7 +37,7 @@ public class MensajesATM {
 	
 	//Extraer efectivo
 	
-	public void etraerEfectivo() {
+	public void extraerEfectivo() {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Seleccione la cuenta de la cual desea extraer efectivo:");
 		System.out.println("-------------------------------------------------------");
@@ -86,8 +86,8 @@ public class MensajesATM {
 		System.out.println("Seleccione la cuenta en la que desea depositar:");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("1- Caja de Ahorro en Pesos");
-		System.out.println("2- Caja de Ahorro en USD");
 		System.out.println("3- Cuenta Corriente");
+		System.out.println("2- Caja de Ahorro en USD");
 		System.out.println("");
 	}
 	
@@ -104,6 +104,7 @@ public class MensajesATM {
 	public void transferenciaEntreCuentas() {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Seleccione la cuenta a la cual desea transferir:");
+		System.out.println("(Recuerde que transfiere desde una cuenta a la otra)");
 		System.out.println("1- Caja de Ahorro en Pesos");
 		System.out.println("2- Cuenta Corriente");
 		System.out.println("");
@@ -145,6 +146,16 @@ public class MensajesATM {
 		System.out.println("-------------------------------------------------------");
 		
 		
+	}
+	
+	public void numeroOPinIncorrectos() {
+		System.out.println("-------------------------------------------------------");
+		System.out.println("El numero de la tarjeta o el pin son incorrectos.");
+	}
+	
+	public void reintentar() {
+		System.out.println("-------------------------------------------------------");
+		System.out.println("¿Desea reintentar?");
 	}
 	
 	
