@@ -12,7 +12,7 @@ public class CuentaCorriente extends Pesos {
 	}
 
 	@Override
-	public void extraer(int monto) {
+	public void extraer(double monto) {
 		if(verificarMonto(monto) && verificarSaldo(monto) && monto/100 == 0) {
 			saldo-= monto;
 		}
@@ -31,8 +31,8 @@ public class CuentaCorriente extends Pesos {
 
 	@Override
 	public void comprarUSD(Cliente cliente, double monto) {
-		int sinImpuestos = monto*70;
-		int conImpuestos = sinImpuestos+= sinImpuestos*0.3;
+		double sinImpuestos = monto*70;
+		double conImpuestos = sinImpuestos+= sinImpuestos*0.3;
 		if(verificarMonto(monto) && verificarSaldo(monto)) {
 			if(cliente.getUSD()!= null) {
 				saldo-= conImpuestos;
@@ -45,7 +45,7 @@ public class CuentaCorriente extends Pesos {
 	}
 
 	@Override
-	public void depositar(int monto) {
+	public void depositar(double monto) {
 		if(verificarMonto(monto) && monto/100 == 0) {
 			saldo+= monto;
 			//hay que agregar la parte de ticket y modificar el txt
