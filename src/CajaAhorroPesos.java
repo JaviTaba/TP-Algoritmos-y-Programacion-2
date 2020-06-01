@@ -8,7 +8,7 @@ public class CajaAhorroPesos extends Pesos{
 
 	@Override
 	public void extraer(int monto) {
-		if(verificarMonto(monto) && verificarSaldo(monto)) {
+		if(verificarMonto(monto) && verificarSaldo(monto) && monto/100 == 0) {
 			saldo-= monto;
 		
 			//hay que agregar la parte de ticket y modificar el txt
@@ -17,7 +17,7 @@ public class CajaAhorroPesos extends Pesos{
 	}
 
 	@Override
-	public void transferir(Cliente cliente, int monto) {
+	public void transferir(Cliente cliente, double monto) {
 		if(verificarMonto(monto) && verificarSaldo(monto)) {
 			saldo -= monto;
 			cliente.getCC().depositar(monto);
@@ -27,7 +27,7 @@ public class CajaAhorroPesos extends Pesos{
 
 
 	@Override
-	public void comprarUSD(Cliente cliente,int monto) {
+	public void comprarUSD(Cliente cliente,double monto) {
 		int sinImpuestos = monto*70;
 		int conImpuestos = sinImpuestos+= sinImpuestos*0.3;
 		if(verificarMonto(monto) && verificarSaldo(monto)) {
@@ -44,7 +44,7 @@ public class CajaAhorroPesos extends Pesos{
 
 	@Override
 	public void depositar(int monto) {
-		if(verificarMonto(monto)) {
+		if(verificarMonto(monto) && monto/100 == 0) {
 			saldo+= monto;
 			
 			//hay que agregar la parte de ticket y modificar el txt

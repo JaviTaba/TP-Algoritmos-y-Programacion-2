@@ -6,7 +6,7 @@ public class CajaAhorroUSD extends Cuenta{
         
     }
     
-    public void depositar(int monto) {
+    public void depositar(double monto) {
     	if(verificarMonto(monto)) {
     		saldo+= monto;
     	}

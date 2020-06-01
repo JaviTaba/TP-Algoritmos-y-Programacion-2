@@ -20,11 +20,18 @@ public class Tarjeta {
         
     }
     
-    
+    /**
+     * @POST Devuelve el numero de la tarjeta.
+     * 
+     */
     public int getNumeroDeTarjeta() {
     	return numeroDeTarjeta;
     }
     
+    /**
+     * @POST Devuelve el PIN de la tarjeta.
+     * 
+     */
     public int getPin() {
     	return pin;
     }
