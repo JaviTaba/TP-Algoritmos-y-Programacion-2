@@ -19,7 +19,7 @@ public class Ticket {
 		return dateFormat.format(date);
 	}
 	
-	public String extraer(Cuenta cuenta, double monto){
+	public String extraer(double saldo, double monto){
 		return "-------------------------------------------------------"
 				+ "\n Has realizado una EXTRACCIÓN"
 				+ "\n FECHA: "+toString()
@@ -28,7 +28,7 @@ public class Ticket {
 				+ "\n-------------------------------------------------------";
 	}
 	
-	public String transferir(Cuenta cuenta, double monto) {
+	public String transferir(double saldo, double monto) {
 		return "-------------------------------------------------------"
 				+ "\n Has realizado una TRANSFERENCIA"
 				+ "\n FECHA: "+toString()
@@ -37,7 +37,7 @@ public class Ticket {
 				+ "\n-------------------------------------------------------";
 	}
 	
-	public String depositar(Cuenta cuenta, double monto) {
+	public String depositar(double saldo, double monto) {
 		return "-------------------------------------------------------"
 				+ "\n Has realizado un DEPOSITO"
 				+ "\n FECHA: "+toString()
@@ -46,7 +46,7 @@ public class Ticket {
 				+ "\n-------------------------------------------------------";
 	} 
 	
-	public String comprarUSD(Cuenta cuenta, double monto) {
+	public String comprarUSD(double saldo, double monto) {
 		DecimalFormat df = new DecimalFormat("#.00");
 		
 		return "-------------------------------------------------------"
@@ -57,7 +57,7 @@ public class Ticket {
 				+ "\n-------------------------------------------------------";
 	} 
 	
-	public String saldo(Cuenta cuenta) {
+	public String saldo(double saldo) {
 		return "-------------------------------------------------------"
 				+ "\n Has realizado una consulta de SALDO"
 				+ "\n FECHA: "+toString()
@@ -65,7 +65,7 @@ public class Ticket {
 				+ "\n-------------------------------------------------------";
 	} 
 	
-	public String alias(Cuenta cuenta) {
+	public String alias(String alias) {
 		return "-------------------------------------------------------"
 				+ "\n Has realizado una consulta de ALIAS"
 				+ "\n FECHA: "+toString()
