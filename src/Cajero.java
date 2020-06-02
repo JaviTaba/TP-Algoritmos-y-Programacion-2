@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Cajero {
-	private  int billetesDeCien = 500;
+	private int billetesDeCien = 500;
 	private int billetesDeQuinientos = 500;
 	private int billetesDeMil = 500;
 	private ArchivoDeCuentas lector;
@@ -77,11 +77,13 @@ public class Cajero {
 		case 1:
 			lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto);
 			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getArs());
+			dispensar(monto);
 			break;
 			
 		case 2:
 			lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto);
 			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getCC());
+			dispensar(monto);
 			break;
 		}
 		
@@ -156,6 +158,34 @@ public class Cajero {
 			break;
 		}
 	}
+	
+		
+	
+	private void dispensar(int monto) {
+		if (monto>100 && monto%100 == 0) {
+			if(monto < 500) {
+				billetesDeCien -= monto/100;
+			} else if(monto == 500 || monto < 1000) {
+				billetesDeQuinientos--;
+				billetesDeCien -= (monto-500)/100;
+			} else {
+				billetesDeMil -= monto/1000;
+			}
+	}
+	
+
+		
+	}
+	
+		
+		
+		
+		
+		
+		
+		
+		
+	
 
 
 }
