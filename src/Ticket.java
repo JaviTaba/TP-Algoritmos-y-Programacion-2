@@ -6,7 +6,7 @@ public class Ticket {
 	
 	private Date date;
 	private SimpleDateFormat dateFormat;
-	
+	private Cuenta cuenta;
 	
 	public Ticket() {
 		date = new Date();
