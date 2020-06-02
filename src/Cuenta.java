@@ -5,7 +5,7 @@ public abstract class Cuenta {
     protected String alias;
     protected double saldo;
     protected double dolar;
-    
+    protected Ticket ticket;
     
     public Cuenta (String alias, double saldo) throws ExcepcionCuenta {
     	
@@ -16,6 +16,7 @@ public abstract class Cuenta {
        this.alias = alias;
        this.saldo = saldo;
        dolar = 130;
+       
     }
     
     
@@ -61,6 +62,8 @@ public abstract class Cuenta {
     	}
     	return false;
     }
+    
+    
     
     
 }

@@ -9,6 +9,7 @@ public class CajaAhorroUSD extends Cuenta{
     public void depositar(double monto) {
     	if(verificarMonto(monto)) {
     		saldo+= monto;
+    		ticket.depositar(saldo, monto);
     	}
     }
     
