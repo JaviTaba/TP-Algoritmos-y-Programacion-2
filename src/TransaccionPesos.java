@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public abstract interface TransaccionPesos {      
+public abstract interface TransaccionPesos  {      
 
 	
 	abstract void extraer(double monto) throws IOException;

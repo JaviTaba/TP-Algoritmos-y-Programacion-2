@@ -17,19 +17,19 @@ public class MensajesATM {
 	public void ingresePin() {
 
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Ingrese su pin de 4 digitos:");
+		System.out.println("Ingrese su pin de 4 digitos: ");
 		System.out.println("");
 	}
 	
 	public void queOperacionDeseaHacer() {
 
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Que operacion desea realizar? (Digite el numero)");
+		System.out.println("¿Qué operación desea realizar? (Digite el número)");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("1- Extraer efectivo");
-		System.out.println("2- Comprar USD");
-		System.out.println("3- Depositar efectivo");
-		System.out.println("4- Transferencia entre sus cuentas");
+		System.out.println("1.- Extraer efectivo");
+		System.out.println("2.- Comprar USD");
+		System.out.println("3.- Depositar efectivo");
+		System.out.println("4.- Transferencia entre sus cuentas");
 		System.out.println("");		
 		
 	}
@@ -39,17 +39,17 @@ public class MensajesATM {
 	
 	public void extraerEfectivo() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Seleccione la cuenta de la cual desea extraer efectivo:");
+		System.out.println("Seleccione la cuenta de la cual desea extraer efectivo");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("1- Caja de Ahorro en Pesos");
-		System.out.println("2- Cuenta Corriente");
+		System.out.println("1.- Caja de Ahorro en Pesos");
+		System.out.println("2.- Cuenta Corriente");
 		System.out.println("");		
 		
 	}
 	
 	public void extraerEfectivoMonto() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Digite la cantidad que desea extraer:");
+		System.out.println("Digite la cantidad que desea extraer");
 		System.out.println("");
 	}
 	
@@ -61,19 +61,19 @@ public class MensajesATM {
 	
 	public void comprarUSD() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Seleccione la cuenta desde la cual desea comprar USD:");
+		System.out.println("Seleccione la cuenta desde la cual desea comprar USD");
 		System.out.println("Dolar actual: 70$. ");
 		System.out.println("(No incluye impuesto PAIS)");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("1- Caja de Ahorro en Pesos");
-		System.out.println("2- Cuenta Corriente");
+		System.out.println("1.- Caja de Ahorro en Pesos");
+		System.out.println("2.- Cuenta Corriente");
 		System.out.println("");	
 		
 	}
 	
 	public void comprarUSDMonto() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Digite la cantidad de USD que desea comprar:");
+		System.out.println("Digite la cantidad de USD que desea comprar");
 		System.out.println("");
 	}
 	
@@ -83,17 +83,17 @@ public class MensajesATM {
 	
 	public void depositarEfectivo() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Seleccione la cuenta en la que desea depositar:");
+		System.out.println("Seleccione la cuenta en la que desea depositar");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("1- Caja de Ahorro en Pesos");
-		System.out.println("3- Cuenta Corriente");
-		System.out.println("2- Caja de Ahorro en USD");
+		System.out.println("1.- Caja de Ahorro en Pesos");
+		System.out.println("2.- Cuenta Corriente");
+		System.out.println("3.- Caja de Ahorro en USD");
 		System.out.println("");
 	}
 	
 	public void depositarEfectivoMonto() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Digite el monto que desea depositar:");
+		System.out.println("Digite el monto que desea depositar");
 		System.out.println("");
 	}
 	
@@ -103,10 +103,10 @@ public class MensajesATM {
 	
 	public void transferenciaEntreCuentas() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Seleccione la cuenta a la cual desea transferir:");
+		System.out.println("Seleccione la cuenta a la cual desea transferir");
 		System.out.println("(Recuerde que transfiere desde una cuenta a la otra)");
-		System.out.println("1- Caja de Ahorro en Pesos");
-		System.out.println("2- Cuenta Corriente");
+		System.out.println("1.- Caja de Ahorro en Pesos");
+		System.out.println("2.- Cuenta Corriente");
 		System.out.println("");
 	}
 	
@@ -157,8 +157,8 @@ public class MensajesATM {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("¿Desea reintentar?");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("1- Si");
-		System.out.println("2- No");
+		System.out.println("1.- Si");
+		System.out.println("2.- No");
 	}
 	
 	
