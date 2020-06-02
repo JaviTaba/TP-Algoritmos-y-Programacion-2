@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class CajaAhorroPesos extends Pesos{
     
     public CajaAhorroPesos( String alias, double saldo) throws ExcepcionCuenta {
@@ -7,45 +9,47 @@ public class CajaAhorroPesos extends Pesos{
     }
 
 	@Override
-	public void extraer(double monto) {
-		if(verificarMonto(monto) && verificarSaldo(monto) && monto/100 == 0) {
+	public void extraer(double monto) throws IOException {
+		if(verificarMonto(monto) && verificarSaldo(monto) && monto%100 == 0) {
 			saldo-= monto;
 		
-			//hay que agregar la parte de ticket y modificar el txt
-
 		}
 	}
 
 	@Override
-	public void transferir(Cliente cliente, double monto) {
-		if(verificarMonto(monto) && verificarSaldo(monto)) {
+	public void transferir(Cliente cliente, double monto) throws IOException {
+		if(verificarMonto(monto) && verificarSaldo(monto) && cliente.getCC() != null) {
 			saldo -= monto;
-			cliente.getCC().depositar(monto);
+			cliente.getCC().saldo += monto;
+				
+			
+			
+			
 		}
 		//hay que agregar la parte de ticket y modificar el txt
 	}
 
 
 	@Override
-	public void comprarUSD(Cliente cliente,double monto) {
+	public void comprarUSD(Cliente cliente,double monto) throws IOException {
 		double sinImpuestos = monto*70;
 		double conImpuestos = sinImpuestos+= sinImpuestos*0.3;
-		if(verificarMonto(monto) && verificarSaldo(monto)) {
-			if(cliente.getUSD()!= null) {
-				saldo-= conImpuestos;
-				cliente.getUSD().depositar(monto);
-				
-			}
+		if(verificarMonto(monto) && verificarSaldo(monto) && cliente.getUSD()!= null) {
+			
+			saldo-= conImpuestos;
+			cliente.getUSD().depositar(monto);
+			
+			
 			
 			//hay que agregar la parte de ticket y modificar el txt
-		
+			
 		}
 	}
 
 	@Override
-	public void depositar(double monto) {
-		if(verificarMonto(monto) && monto/100 == 0) {
-			saldo+= monto;
+	public void depositar(double monto) throws IOException {
+		if(verificarMonto(monto) && monto%100 == 0) {
+			saldo += monto;
 			
 			//hay que agregar la parte de ticket y modificar el txt
 

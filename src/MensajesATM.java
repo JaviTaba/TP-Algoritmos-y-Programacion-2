@@ -156,6 +156,9 @@ public class MensajesATM {
 	public void reintentar() {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("¿Desea reintentar?");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("1- Si");
+		System.out.println("2- No");
 	}
 	
 	
