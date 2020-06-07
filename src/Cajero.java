@@ -167,20 +167,19 @@ public class Cajero {
 	
 	private void dispensar(int monto) {
 		
-		if (monto>100 && monto%100 != 0) {
-			if(monto < 500) {
+		
 				billetesDeCien -= monto/100;
-			} else if(monto == 500 || monto < 1000) {
+			
 				billetesDeQuinientos--;
 				billetesDeCien -= (monto-500)/100;
-			} else {
+			
 				billetesDeMil -= monto/1000;
-			}
+		
 	}
 	
 
 		
-	}
+	
 	
 		
 		

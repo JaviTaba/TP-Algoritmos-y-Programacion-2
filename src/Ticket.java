@@ -8,15 +8,15 @@ import java.util.Date;
 public class Ticket {
 	File ticket;
 	private Date date;
-	private SimpleDateFormat dateFormat, dateFile;
+	private SimpleDateFormat dateFormat;
 	FileWriter writer;
 	
 	
 	public Ticket() throws IOException {
 		date = new Date();
 		dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		dateFile = new SimpleDateFormat("dd-MM-yyyy");
-		ticket = new File("ticket-"+dateFile.format(date)+".txt");
+		
+		ticket = new File("ticket.txt");
 		writer = new FileWriter(ticket);
 	}
 
