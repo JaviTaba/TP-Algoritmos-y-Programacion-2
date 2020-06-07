@@ -14,8 +14,8 @@ public class CuentaCorriente extends Pesos {
 	}
 
 	@Override
-	public void extraer(double monto) throws IOException {
-		if(verificarMonto(monto) && verificarSaldo(monto) && monto%100 == 0) {
+	public void extraer(double monto) throws ExcepcionTransaccion {
+		if(verificarMonto(monto) && verificarSaldo(monto)) {
 			saldo-= monto;
 			
 		}
@@ -24,7 +24,7 @@ public class CuentaCorriente extends Pesos {
 	}
 
 	@Override
-	public void transferir(Cliente cliente,double monto) throws IOException {
+	public void transferir(Cliente cliente,double monto) throws ExcepcionTransaccion {
 		if(verificarMonto(monto) && verificarSaldo(monto) && cliente.getArs() != null) {
 			saldo -= monto;
 			cliente.getArs().saldo += monto;
@@ -34,7 +34,7 @@ public class CuentaCorriente extends Pesos {
 	}
 
 	@Override
-	public void comprarUSD(Cliente cliente, double monto) throws IOException {
+	public void comprarUSD(Cliente cliente, double monto) throws ExcepcionTransaccion {
 		double sinImpuestos = monto*70;
 		double conImpuestos = sinImpuestos+= sinImpuestos*0.3;
 		if(verificarMonto(monto) && verificarSaldo(monto) && cliente.getUSD()!= null) {
@@ -49,8 +49,8 @@ public class CuentaCorriente extends Pesos {
 	}
 
 	@Override
-	public void depositar(double monto) throws IOException {
-		if(verificarMonto(monto) && monto%100 == 0) {
+	public void depositar(double monto) throws ExcepcionTransaccion {
+		if(verificarMonto(monto)) {
 			saldo += monto;
 		
 			//hay que agregar la parte de ticket y modificar el txt

@@ -10,7 +10,7 @@ public class TestTicket {
 	private Cliente cliente;
 	
 	@Test
-	public void ticket() throws ExcepcionCuenta, ExcepcionTarjeta, ExcepcionCliente, IOException {
+	public void ticket() throws ExcepcionCuenta, ExcepcionTarjeta, ExcepcionCliente, IOException, ExcepcionTransaccion {
 		tarjeta = new Tarjeta(12345678, 1234);
 		cliente = new Cliente(20353780191L,tarjeta);
 		cuenta = new CajaAhorroPesos("black.beatles.air", 50000);

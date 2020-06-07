@@ -34,6 +34,7 @@ public class Cliente {
         public CajaAhorroUSD getUSD() {
         	return this.usd;
         }
+        
         public void asociarCuentaCorriente(String alias, Double saldo, Double descubierto) throws ExcepcionCuenta{
             this.cc = new CuentaCorriente(alias, saldo, descubierto);
         }

@@ -17,7 +17,7 @@ public class MensajesATM {
 	public void ingresePin() {
 
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Ingrese su pin de 4 digitos: ");
+		System.out.println("Ingrese su PIN de 4 dígitos: ");
 		System.out.println("");
 	}
 	
@@ -39,7 +39,7 @@ public class MensajesATM {
 	
 	public void extraerEfectivo() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Seleccione la cuenta de la cual desea extraer efectivo");
+		System.out.println("Seleccione la cuenta de la cual desea extraer efectivo:");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("1.- Caja de Ahorro en Pesos");
 		System.out.println("2.- Cuenta Corriente");
@@ -49,7 +49,7 @@ public class MensajesATM {
 	
 	public void extraerEfectivoMonto() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Digite la cantidad que desea extraer");
+		System.out.println("Digite la cantidad que desea extraer:");
 		System.out.println("");
 	}
 	
@@ -141,8 +141,8 @@ public class MensajesATM {
 	
 	public void adios() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Gracias por utilizar nuestro cajero automatico!");
-		System.out.println("Buenas noches!");
+		System.out.println("Gracias por utilizar nuestro cajero automatico.");
+		System.out.println("¡Vuelva prontos!");
 		System.out.println("-------------------------------------------------------");
 		
 		
@@ -150,7 +150,7 @@ public class MensajesATM {
 	
 	public void numeroOPinIncorrectos() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("El numero de la tarjeta o el pin son incorrectos.");
+		System.out.println("El número de la tarjeta o el PIN son incorrectos.");
 	}
 	
 	public void reintentar() {

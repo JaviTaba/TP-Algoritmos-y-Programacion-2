@@ -19,7 +19,7 @@ public class Cajero {
 		ticket = new Ticket();
 		
 	}
-	public void iniciar() throws ExcepcionTarjeta, IOException {
+	public void iniciar() throws ExcepcionTarjeta, ExcepcionTransaccion, IOException {
 		
 		
 		mensaje.bienvenidaYTarjeta();
@@ -65,7 +65,7 @@ public class Cajero {
 
 	}
 	
-	private void extraerEfectivo() throws IOException {
+	private void extraerEfectivo() throws ExcepcionTransaccion, IOException {
 
 		mensaje.extraerEfectivo();
 		int cuenta = sc.nextInt();
@@ -90,7 +90,7 @@ public class Cajero {
 	}
 	
 	
-	private void comprarUSD() throws IOException {
+	private void comprarUSD() throws ExcepcionTransaccion, IOException {
 		mensaje.comprarUSD();
 		int cuenta = sc.nextInt();
 		mensaje.comprarUSDMonto();
@@ -111,7 +111,7 @@ public class Cajero {
 		}
 	}
 	
-	private void depositarEfectivo() throws IOException {
+	private void depositarEfectivo() throws ExcepcionTransaccion,IOException {
 		mensaje.depositarEfectivo();
 		int cuenta = sc.nextInt();
 		mensaje.depositarEfectivoMonto();
@@ -139,7 +139,7 @@ public class Cajero {
 	}
 
 
-	private void transferenciaEntreCuentas() throws IOException {
+	private void transferenciaEntreCuentas() throws ExcepcionTransaccion, IOException {
 		mensaje.transferenciaEntreCuentas();
 		int cuenta = sc.nextInt();
 		mensaje.transferenciaEntreCuentasMonto();

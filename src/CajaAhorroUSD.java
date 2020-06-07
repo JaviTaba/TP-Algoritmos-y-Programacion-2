@@ -8,8 +8,8 @@ public class CajaAhorroUSD extends Cuenta{
         
     }
     
-    public void depositar(double monto) throws IOException {
-    	if(verificarMonto(monto) && monto%100==0) {
+    public void depositar(double monto) throws ExcepcionTransaccion {
+    	if(verificarMonto(monto)) {
     		saldo+= monto;
     	
     	}

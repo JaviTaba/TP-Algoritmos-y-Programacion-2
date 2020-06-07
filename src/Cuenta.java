@@ -45,8 +45,8 @@ public abstract class Cuenta {
      *  
      * 
      */
-    protected boolean verificarMonto(double monto) {
-    	if (monto>0) {
+    protected boolean verificarMonto(double monto) throws ExcepcionTransaccion{
+    	if (monto>0 && monto%100 == 0) {
     		return true;
     	}
     	return false;
@@ -56,7 +56,7 @@ public abstract class Cuenta {
     /**
      * @POST Verifica que la cuenta contiene el saldo necesario para la transaccion
      */
-    protected boolean verificarSaldo(double monto) {
+    protected boolean verificarSaldo(double monto) throws ExcepcionTransaccion {
     	if (saldo>monto) {
     		return true;
     	}
