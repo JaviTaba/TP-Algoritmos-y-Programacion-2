@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class CajaAhorroUSD extends Cuenta{
     
     public CajaAhorroUSD(String alias, double saldo) throws ExcepcionCuenta{
@@ -8,10 +6,10 @@ public class CajaAhorroUSD extends Cuenta{
         
     }
     
-    public void depositar(double monto) throws ExcepcionTransaccion {
+    public void depositar(double monto, Ticket ticket) throws ExcepcionTransaccion {
     	if(verificarMonto(monto)) {
     		saldo+= monto;
-    	
+    		movimientos.add(ticket);
     	}
     }
     

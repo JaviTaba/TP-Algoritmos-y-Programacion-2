@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public abstract class Cuenta {
 	
 	
@@ -5,17 +7,18 @@ public abstract class Cuenta {
     protected String alias;
     protected double saldo;
     protected double dolar;
-  
+    protected Stack<Ticket> movimientos;
     
     public Cuenta (String alias, double saldo) throws ExcepcionCuenta {
     	
       if(alias.equals(null) || alias.isEmpty()) {
     	  throw new ExcepcionCuenta("Alias incorrecto.");
       }
-      
+      	
        this.alias = alias;
        this.saldo = saldo;
        dolar = 130;
+       movimientos = new Stack<Ticket>();
        
     }
     
@@ -46,7 +49,7 @@ public abstract class Cuenta {
      * 
      */
     protected boolean verificarMonto(double monto) throws ExcepcionTransaccion{
-    	if (monto>0 && monto%100 == 0) {
+    	if (monto>0) {
     		return true;
     	}
     	return false;

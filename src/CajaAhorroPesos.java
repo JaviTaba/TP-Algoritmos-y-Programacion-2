@@ -7,19 +7,20 @@ public class CajaAhorroPesos extends Pesos{
     }
 
 	@Override
-	public void extraer(double monto) throws ExcepcionTransaccion {
+	public void extraer(double monto, Ticket ticket) throws ExcepcionTransaccion {
 		if(verificarMonto(monto) && verificarSaldo(saldo)) {
 			saldo -= monto;
+			movimientos.add(ticket);
 		}
 		
 	}
 
 	@Override
-	public void transferir(Cliente cliente, double monto) throws ExcepcionTransaccion {
+	public void transferir(Cliente cliente, double monto, Ticket ticket) throws ExcepcionTransaccion {
 		if(verificarMonto(monto) && verificarSaldo(monto) && cliente.getCC() != null) {
 			saldo -= monto;
 			cliente.getCC().saldo += monto;
-				
+			movimientos.add(ticket);	
 			
 			
 			
@@ -29,14 +30,13 @@ public class CajaAhorroPesos extends Pesos{
 
 
 	@Override
-	public void comprarUSD(Cliente cliente,double monto) throws ExcepcionTransaccion {
-		double sinImpuestos = monto*70;
-		double conImpuestos = sinImpuestos+= sinImpuestos*0.3;
-		if(verificarMonto(monto) && verificarSaldo(monto) && cliente.getUSD()!= null) {
+	public void comprarUSD(Cliente cliente,double monto, Ticket ticket) throws ExcepcionTransaccion {
+		double montoConImpuesto = monto*1.3;
+		if(verificarMonto(montoConImpuesto) && verificarSaldo(montoConImpuesto) && cliente.getUSD()!= null) {
 			
-			saldo-= conImpuestos;
-			cliente.getUSD().depositar(monto);
-			
+			saldo-= montoConImpuesto;
+			cliente.getUSD().saldo += montoConImpuesto/this.dolar;
+			movimientos.add(ticket);
 			
 			
 			//hay que agregar la parte de ticket y modificar el txt
@@ -45,10 +45,10 @@ public class CajaAhorroPesos extends Pesos{
 	}
 
 	@Override
-	public void depositar(double monto) throws ExcepcionTransaccion {
+	public void depositar(double monto, Ticket ticket) throws ExcepcionTransaccion {
 		if(verificarMonto(monto)) {
 			saldo += monto;
-			
+			movimientos.add(ticket);
 			//hay que agregar la parte de ticket y modificar el txt
 
 		}

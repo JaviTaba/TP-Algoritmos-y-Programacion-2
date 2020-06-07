@@ -8,25 +8,31 @@ import java.util.Date;
 public class Ticket {
 	File ticket;
 	private Date date;
-	private SimpleDateFormat dateFormat;
+	private SimpleDateFormat dateFormat, dateFile;
 	FileWriter writer;
+	
 	
 	public Ticket() throws IOException {
 		date = new Date();
 		dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		ticket = new File("ticket.txt");
+		dateFile = new SimpleDateFormat("dd-MM-yyyy");
+		ticket = new File("ticket-"+dateFile.format(date)+".txt");
 		writer = new FileWriter(ticket);
 	}
 
 
-	public String toString() {
+	public String getFecha() {
 		return dateFormat.format(date);
 	}
 	
-	public void extraer(double saldo, double monto, Cuenta cuenta) throws IOException{
+	public String toString() {
+		return ticket.toString();
+	}
+	
+	public void extraer(Cuenta cuenta, double monto) throws IOException{
 		writer.write("-------------------------------------------------------"
 				+ "\n Has realizado una EXTRACCIÓN"
-				+ "\n FECHA: "+toString()
+				+ "\n FECHA: "+getFecha()
 				+ "\n IMPORTE: $"+monto
 				+ "\n SALDO ACTUAL: $"+cuenta.getSaldo()
 				+ "\n-------------------------------------------------------");
@@ -34,10 +40,10 @@ public class Ticket {
 	     writer.close();
 	}
 	
-	public void transferir(double saldo, double monto, Cuenta cuenta) throws IOException {
+	public void transferir(Cuenta cuenta, double monto) throws IOException {
 		writer.write("-------------------------------------------------------"
 				+ "\n Has realizado una TRANSFERENCIA"
-				+ "\n FECHA: "+toString()
+				+ "\n FECHA: "+getFecha()
 				+ "\n IMPORTE: $"+monto
 				+ "\n SALDO ACTUAL: $"+cuenta.getSaldo()
 				+ "\n-------------------------------------------------------");
@@ -45,10 +51,10 @@ public class Ticket {
 	     writer.close();
 	}
 	
-	public void depositar(double saldo, double monto, Cuenta cuenta) throws IOException {
+	public void depositar(Cuenta cuenta, double monto) throws IOException {
 		writer.write("-------------------------------------------------------"
 				+ "\n Has realizado un DEPOSITO"
-				+ "\n FECHA: "+toString()
+				+ "\n FECHA: "+getFecha()
 				+ "\n IMPORTE: $"+monto
 				+ "\n SALDO ACTUAL: $"+cuenta.getSaldo()
 				+ "\n-------------------------------------------------------");
@@ -56,12 +62,12 @@ public class Ticket {
 	     writer.close();
 	} 
 	
-	public void comprarUSD(double saldo, double monto, Cuenta cuenta) throws IOException {
+	public void comprarUSD(Cuenta cuenta, double monto) throws IOException {
 		DecimalFormat df = new DecimalFormat("#.00");
 		
 		writer.write("-------------------------------------------------------"
 				+ "\n Has realizado una COMPRA DE DOLARES"
-				+ "\n FECHA: "+toString()
+				+ "\n FECHA: "+getFecha()
 				+ "\n IMPORTE: $"+df.format(monto/cuenta.dolar)
 				+ "\n SALDO ACTUAL: $"+cuenta.getSaldo()
 				+ "\n-------------------------------------------------------");

@@ -40,6 +40,7 @@ public class Cajero {
 			
 			case 1:
 				extraerEfectivo();
+				
 				break;
 			case 2:
 				comprarUSD();
@@ -51,6 +52,9 @@ public class Cajero {
 				transferenciaEntreCuentas();
 				break;
 			}
+			
+			
+			
 		}
 		else {
 			mensaje.numeroOPinIncorrectos();
@@ -75,15 +79,15 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto);
-			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getArs());
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto, ticket);
 			dispensar(monto);
+			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 			
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto);
-			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getCC());
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto, ticket);
 			dispensar(monto);
+			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 		}
 		
@@ -99,13 +103,13 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
-			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo(), monto, 	lector.getTarjetas().getCuitCliente().get(cuit).getArs());
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
+			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 			
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
-			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getCC());
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
+			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 			
 		}
@@ -120,18 +124,18 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().depositar(monto);
-			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo(), monto,lector.getTarjetas().getCuitCliente().get(cuit).getArs() );
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().depositar(monto, ticket);
+			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 		
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().depositar(monto);
-			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getCC());
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().depositar(monto, ticket);
+			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 			
 		case 3:
-			lector.getTarjetas().getCuitCliente().get(cuit).getUSD().depositar(monto);
-			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getUSD());
+			lector.getTarjetas().getCuitCliente().get(cuit).getUSD().depositar(monto, ticket);
+			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD(), monto);
 			break;
 		}
 		
@@ -148,13 +152,13 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().transferir(lector.getTarjetas().getCuitCliente().get(cuit), monto);
-			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getCC());
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().transferir(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
+			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 			
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().transferir(lector.getTarjetas().getCuitCliente().get(cuit), monto);
-			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo(), monto, lector.getTarjetas().getCuitCliente().get(cuit).getArs());
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().transferir(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
+			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 		}
 	}
@@ -162,7 +166,8 @@ public class Cajero {
 		
 	
 	private void dispensar(int monto) {
-		if (monto>100 && monto%100 == 0) {
+		
+		if (monto>100 && monto%100 != 0) {
 			if(monto < 500) {
 				billetesDeCien -= monto/100;
 			} else if(monto == 500 || monto < 1000) {

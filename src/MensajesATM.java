@@ -15,14 +15,14 @@ public class MensajesATM {
 	
 	
 	public void ingresePin() {
-
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Ingrese su PIN de 4 dígitos: ");
 		System.out.println("");
 	}
 	
 	public void queOperacionDeseaHacer() {
-
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("¿Qué operación desea realizar? (Digite el número)");
 		System.out.println("-------------------------------------------------------");
@@ -38,6 +38,7 @@ public class MensajesATM {
 	//Extraer efectivo
 	
 	public void extraerEfectivo() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Seleccione la cuenta de la cual desea extraer efectivo:");
 		System.out.println("-------------------------------------------------------");
@@ -48,6 +49,7 @@ public class MensajesATM {
 	}
 	
 	public void extraerEfectivoMonto() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Digite la cantidad que desea extraer:");
 		System.out.println("");
@@ -60,6 +62,7 @@ public class MensajesATM {
 	//Comprar USD
 	
 	public void comprarUSD() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Seleccione la cuenta desde la cual desea comprar USD");
 		System.out.println("Dolar actual: 70$. ");
@@ -72,6 +75,7 @@ public class MensajesATM {
 	}
 	
 	public void comprarUSDMonto() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Digite la cantidad de USD que desea comprar");
 		System.out.println("");
@@ -82,6 +86,7 @@ public class MensajesATM {
 	//Depositar efectivo
 	
 	public void depositarEfectivo() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Seleccione la cuenta en la que desea depositar");
 		System.out.println("-------------------------------------------------------");
@@ -92,6 +97,7 @@ public class MensajesATM {
 	}
 	
 	public void depositarEfectivoMonto() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Digite el monto que desea depositar");
 		System.out.println("");
@@ -102,6 +108,7 @@ public class MensajesATM {
 	//Transferencia entre cuentas
 	
 	public void transferenciaEntreCuentas() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Seleccione la cuenta a la cual desea transferir");
 		System.out.println("(Recuerde que transfiere desde una cuenta a la otra)");
@@ -111,6 +118,7 @@ public class MensajesATM {
 	}
 	
 	public void transferenciaEntreCuentasMonto() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Digite el monto que desea transferir a su cuenta:");
 		System.out.println("");
@@ -123,23 +131,27 @@ public class MensajesATM {
 	//Extras
 	
 	public void terminarONo() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Desea realizar otra operacion? (Y/N)");
 		System.out.println("");
 	}
 	
 	public void operacionCorrecta() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("La operacion se ha realizado con exito.");
 		
 	}
 	
 	public void operacionIncorrecta() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("La operacion no pudo ser realizada.");
 	}
 	
 	public void adios() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Gracias por utilizar nuestro cajero automatico.");
 		System.out.println("¡Vuelva prontos!");
@@ -149,11 +161,13 @@ public class MensajesATM {
 	}
 	
 	public void numeroOPinIncorrectos() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("El número de la tarjeta o el PIN son incorrectos.");
 	}
 	
 	public void reintentar() {
+		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("¿Desea reintentar?");
 		System.out.println("-------------------------------------------------------");
