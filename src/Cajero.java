@@ -165,17 +165,41 @@ public class Cajero {
 	
 		
 	
-	private void dispensar(int monto) {
+	public void dispensar(int monto) {
 		
-		
-				billetesDeCien -= monto/100;
+		if(monto<500) {
+			billetesDeCien-=monto/100;
+		}else if(monto==500 || monto<1000) {
+			billetesDeQuinientos--;
+			billetesDeCien-=(monto-500)/100;	
+		}else{
+			billetesDeMil-=monto/1000;
 			
+			int miles = (monto/1000)*1000;
+			int resto = monto-miles;
+			
+			if(resto<500) {
+				billetesDeCien-=resto/100;
+			}else if(resto==500 || resto<1000) {
 				billetesDeQuinientos--;
-				billetesDeCien -= (monto-500)/100;
+				billetesDeCien-=(resto-500)/100;	
+			}
 			
-				billetesDeMil -= monto/1000;
+		}
+		
 		
 	}
+	public int getBilletesDeCien() {
+		return billetesDeCien;
+	}
+	public int getBilletesDeQuinientos() {
+		return billetesDeQuinientos;
+	}
+	public int getBilletesDeMil() {
+		return billetesDeMil;
+	}
+	
+	
 	
 
 		
