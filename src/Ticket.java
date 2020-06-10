@@ -14,15 +14,11 @@ public class Ticket {
 	
 	
 	public Ticket() throws IOException {
-		try {
-			date = new Date();
-			dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-			dateTicket = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
-			ticket = new File("ticket"+dateTicket.format(date)+".txt");
-			writer = new FileWriter(ticket);
-		} catch (ExcepcionTicket t) {
-			throw new ExcepcionTicket("No se pudo generar el ticket.");
-		}
+		date = new Date();
+		dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		dateTicket = new SimpleDateFormat("dd-MM-yyyy--HH-mm-ss");
+			
+		
 		
 	}
 
@@ -36,6 +32,8 @@ public class Ticket {
 	}
 	
 	public void extraer(Cuenta cuenta, double monto) throws IOException{
+			ticket = new File("ticket"+dateTicket.format(date)+".txt");
+			writer = new FileWriter(ticket);
 			writer.write("-------------------------------------------------------"
 					+ "\n Has realizado una EXTRACCIÓN"
 					+ "\n FECHA: "+getFecha()
@@ -49,6 +47,8 @@ public class Ticket {
 	}
 	
 	public void transferir(Cuenta cuenta, double monto) throws IOException {
+		ticket = new File("ticket"+dateTicket.format(date)+".txt");
+		writer = new FileWriter(ticket);
 		writer.write("-------------------------------------------------------"
 				+ "\n Has realizado una TRANSFERENCIA"
 				+ "\n FECHA: "+getFecha()
@@ -60,6 +60,8 @@ public class Ticket {
 	}
 	
 	public void depositar(Cuenta cuenta, double monto) throws IOException {
+		ticket = new File("ticket"+dateTicket.format(date)+".txt");
+		writer = new FileWriter(ticket);
 		writer.write("-------------------------------------------------------"
 				+ "\n Has realizado un DEPOSITO"
 				+ "\n FECHA: "+getFecha()

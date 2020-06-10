@@ -6,6 +6,7 @@ public class Cliente {
         private CajaAhorroUSD usd = null;
         private CuentaCorriente cc = null;
         
+        
 
 	public Cliente(long cuit, Tarjeta tarjeta) throws ExcepcionCliente {
 		

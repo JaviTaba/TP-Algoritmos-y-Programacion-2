@@ -30,7 +30,6 @@ public class MensajesATM {
 		System.out.println("2.- Comprar USD");
 		System.out.println("3.- Depositar efectivo");
 		System.out.println("4.- Transferencia entre sus cuentas");
-		System.out.println("");		
 		
 	}
 	
@@ -107,20 +106,17 @@ public class MensajesATM {
 	
 	//Transferencia entre cuentas
 	
-	public void transferenciaEntreCuentas() {
+	public void transferir() {
 		System.out.println("");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Seleccione la cuenta a la cual desea transferir");
-		System.out.println("(Recuerde que transfiere desde una cuenta a la otra)");
-		System.out.println("1.- Caja de Ahorro en Pesos");
-		System.out.println("2.- Cuenta Corriente");
+		System.out.println("Ingrese el alias de la cuenta a la cual desea transferir:");
 		System.out.println("");
 	}
 	
-	public void transferenciaEntreCuentasMonto() {
+	public void transferirMonto() {
 		System.out.println("");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Digite el monto que desea transferir a su cuenta:");
+		System.out.println("Digite el monto que desea transferir:");
 		System.out.println("");
 	}
 	

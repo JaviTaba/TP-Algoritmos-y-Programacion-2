@@ -33,28 +33,7 @@ public class Cajero {
 		cuit = lector.getTarjetas().getCuitTarjeta().get(tarjeta);
 		
 		if(cuit != null) {
-			mensaje.queOperacionDeseaHacer();
-			int operacion = sc.nextInt();
-			
-			switch(operacion) {
-			
-			case 1:
-				extraerEfectivo();
-				
-				break;
-			case 2:
-				comprarUSD();
-				break;
-			case 3:
-				depositarEfectivo();
-				break;
-			case 4:
-				transferenciaEntreCuentas();
-				break;
-			}
-			
-			
-			
+			cuerpoCajero();			
 		}
 		else {
 			mensaje.numeroOPinIncorrectos();
@@ -69,6 +48,45 @@ public class Cajero {
 
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	private void cuerpoCajero() throws ExcepcionTransaccion, IOException {
+		mensaje.queOperacionDeseaHacer();
+		int operacion = sc.nextInt();
+		
+		switch(operacion) {
+		
+		case 1:
+			extraerEfectivo();
+			break;
+		case 2:
+			comprarUSD();
+			break;
+		case 3:
+			depositarEfectivo();
+			break;
+		case 4:
+			transferencia();
+			break;
+		}
+		
+		mensaje.operacionCorrecta();
+		mensaje.terminarONo();
+		String yesOrNo = sc.next();
+		if(yesOrNo.equalsIgnoreCase("Y")) {
+			cuerpoCajero();
+		}else {
+			mensaje.adios();
+		}
+		
+	}
+	
+
 	private void extraerEfectivo() throws ExcepcionTransaccion, IOException {
 
 		mensaje.extraerEfectivo();
@@ -79,21 +97,19 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto);
 			dispensar(monto);
 			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 			
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto);
 			dispensar(monto);
 			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 		}
 		
 	}
-	
-	
 	private void comprarUSD() throws ExcepcionTransaccion, IOException {
 		mensaje.comprarUSD();
 		int cuenta = sc.nextInt();
@@ -103,18 +119,17 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
 			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 			
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
 			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 			
 		}
 	}
-	
 	private void depositarEfectivo() throws ExcepcionTransaccion,IOException {
 		mensaje.depositarEfectivo();
 		int cuenta = sc.nextInt();
@@ -124,47 +139,34 @@ public class Cajero {
 		switch(cuenta) {
 		
 		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().depositar(monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().depositar(monto);
 			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
 		
 		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().depositar(monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().depositar(monto);
 			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
 			
 		case 3:
-			lector.getTarjetas().getCuitCliente().get(cuit).getUSD().depositar(monto, ticket);
+			lector.getTarjetas().getCuitCliente().get(cuit).getUSD().depositar(monto);
 			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD(), monto);
 			break;
 		}
 		
 		
 	}
-
-
-	private void transferenciaEntreCuentas() throws ExcepcionTransaccion, IOException {
-		mensaje.transferenciaEntreCuentas();
-		int cuenta = sc.nextInt();
-		mensaje.transferenciaEntreCuentasMonto();
-		int monto = sc.nextInt();
+	private void transferencia() {
+		mensaje.transferir();
+		String alias = sc.next();
+		mensaje.transferirMonto();
+		double monto = sc.nextDouble();
 		
-		switch(cuenta) {
 		
-		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().transferir(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
-			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
-			break;
-			
-		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().transferir(lector.getTarjetas().getCuitCliente().get(cuit), monto, ticket);
-			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
-			break;
-		}
+		
 	}
-	
-		
-	
+
+
 	public void dispensar(int monto) {
 		
 		if(monto<500) {
