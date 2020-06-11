@@ -1,7 +1,8 @@
 import java.io.IOException;
+import java.security.DrbgParameters.NextBytes;
 import java.util.Scanner;
 
-public class Cajero {
+public class Cajero implements Reversible{
 	private int billetesDeCien = 500;
 	private int billetesDeQuinientos = 500;
 	private int billetesDeMil = 500;
@@ -17,21 +18,21 @@ public class Cajero {
 		mensaje = new MensajesATM();
 		sc = new Scanner(System.in);
 		ticket = new Ticket();
-		
+
 	}
 	public void iniciar() throws ExcepcionTarjeta, ExcepcionTransaccion, IOException, ExcepcionCuenta {
-		
-		
+
+
 		mensaje.bienvenidaYTarjeta();
 		int numeroTarjeta = sc.nextInt();
 		mensaje.ingresePin();
 		int pin = sc.nextInt();
-		
+
 		tarjeta = new Tarjeta(numeroTarjeta, pin);
-		
-		
+
+
 		cuit = lector.getTarjetas().getCuitTarjeta().get(tarjeta);
-		
+
 		if(cuit != null) {
 			cuerpoCajero();			
 		}
@@ -47,20 +48,20 @@ public class Cajero {
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 	private void cuerpoCajero() throws ExcepcionTransaccion, IOException, ExcepcionCuenta {
 		mensaje.queOperacionDeseaHacer();
 		int operacion = sc.nextInt();
-		
+
 		switch(operacion) {
-		
+
 		case 1:
 			extraerEfectivo();
 			break;
@@ -74,7 +75,7 @@ public class Cajero {
 			transferencia();
 			break;
 		}
-		
+
 		mensaje.operacionCorrecta();
 		mensaje.terminarONo();
 		String yesOrNo = sc.next();
@@ -83,9 +84,9 @@ public class Cajero {
 		}else {
 			mensaje.adios();
 		}
-		
+
 	}
-	
+
 	private void extraerEfectivo() throws ExcepcionTransaccion, IOException{
 		mensaje.extraerEfectivo();
 		int cuenta = sc.nextInt();
@@ -93,31 +94,31 @@ public class Cajero {
 	}
 	private void extraerEfectivo1(int cuenta) throws ExcepcionTransaccion, IOException {
 
-	
+
 		mensaje.extraerEfectivoMonto();
 		int monto = sc.nextInt();
-		
+
 		if(monto%100==0) {
 
 			switch(cuenta) {
-			
+
 			case 1:
 				cliente(cuit).getArs().extraer(monto);
 				dispensar(monto);
 				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 				break;
-				
+
 			case 2:
 				cliente(cuit).getCC().extraer(monto);
 				dispensar(monto);
 				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 				break;
 			}
-		
+
 		}else {
 			System.out.println("El monto a extraer debe ser multiplo de 100");
 			extraerEfectivo1(cuenta);
-			
+
 		}
 	}
 	private void comprarUSD() throws ExcepcionTransaccion, IOException {
@@ -125,19 +126,19 @@ public class Cajero {
 		int cuenta = sc.nextInt();
 		mensaje.comprarUSDMonto();
 		int monto = sc.nextInt();
-		
+
 		switch(cuenta) {
-		
+
 		case 1:
 			cliente(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
 			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
-			
+
 		case 2:
 			cliente(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
 			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
-			
+
 		}
 	}
 	private void depositarEfectivo() throws ExcepcionTransaccion,IOException {
@@ -145,68 +146,91 @@ public class Cajero {
 		int cuenta = sc.nextInt();
 		mensaje.depositarEfectivoMonto();
 		int monto = sc.nextInt();
-		
+
 		switch(cuenta) {
-		
+
 		case 1:
 			cliente(cuit).getArs().depositar(monto);
 			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
 			break;
-		
+
 		case 2:
 			cliente(cuit).getCC().depositar(monto);
 			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 			break;
-			
+
 		case 3:
 			cliente(cuit).getUSD().depositar(monto);
 			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD(), monto);
 			break;
 		}
-		
-		
+
+
 	}
 	private void transferencia() throws ExcepcionTransaccion, ExcepcionCuenta, IOException {
 		mensaje.transferir();
-		String alias = sc.next();
+		String alias = sc.next();		
 		mensaje.transferirMonto();
 		double monto = sc.nextDouble();
-		mensaje.desdeQueCuentaDeseaTransferir();
-		int cuenta = sc.nextInt();
-		
-		switch(cuenta) {
-		
-		case 1:
-			cliente(cuit).getArs().transferir( lector.encontrarCuenta(alias), monto);
-			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
-			break;
+
+		if(monto>0) {
+
+			mensaje.desdeQueCuentaDeseaTransferir();
+			int cuenta = sc.nextInt();
+
+			switch(cuenta) {
+
+			case 1:
+				cliente(cuit).getArs().transferir( lector.encontrarCuenta(alias), monto);
+				mensaje.deseaRevertirLaTransferencia();
+				String revertir = sc.next();
+				if(revertir.equalsIgnoreCase("REVERTIR")){
+					revertirTransferencia(1, monto, alias);
+					mensaje.seRevirtioConExito();
+					break;
+				}else {
+					ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+					break;
+				}
 				
-		case 2:
-			cliente(cuit).getCC().transferir(lector.encontrarCuenta(alias), monto);
-			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
-			break;
+
+			case 2:
+				cliente(cuit).getCC().transferir(lector.encontrarCuenta(alias), monto);
+				mensaje.deseaRevertirLaTransferencia();
+				String revertir1 = sc.next();
+				if(revertir1.equalsIgnoreCase("REVERTIR")){
+					revertirTransferencia(2, monto, alias);
+					mensaje.seRevirtioConExito();
+					break;
+				}else {
+				ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				break;
+				}
+
+
+			}
 			
-					
+			
+			
+			
+		}else {
+			System.out.println("El monto debe ser mayor a 0.");
+			transferencia();
+
 		}
-		
-		
-		/*
-		 * Cuenta cuenta = new Cuenta(pepe.sol.juan, 140000);
-		 * 
-		 * cuenta.trasnferir(cuentaDestinataria, monto);
-		 */
-		
+
+
 	}
-	
+
 	private Cliente cliente(Long cuit) {
 		return lector.getTarjetas().getCuitCliente().get(cuit);
 	}
-	
+
 
 
 
 	public void dispensar(int monto) {
-		
+
 		if(monto<500) {
 			billetesDeCien-=monto/100;
 		}else if(monto==500 || monto<1000) {
@@ -214,20 +238,20 @@ public class Cajero {
 			billetesDeCien-=(monto-500)/100;	
 		}else{
 			billetesDeMil-=monto/1000;
-			
+
 			int miles = (monto/1000)*1000;
 			int resto = monto-miles;
-			
+
 			if(resto<500) {
 				billetesDeCien-=resto/100;
 			}else if(resto==500 || resto<1000) {
 				billetesDeQuinientos--;
 				billetesDeCien-=(resto-500)/100;	
 			}
-			
+
 		}
-		
-		
+
+
 	}
 	public int getBilletesDeCien() {
 		return billetesDeCien;
@@ -240,20 +264,23 @@ public class Cajero {
 	}
 	
 	
-	
+	@Override
+	public void revertirTransferencia(int tipoDeCuenta, double monto, String alias) throws ExcepcionTransaccion, ExcepcionCuenta {
+		switch(tipoDeCuenta) {
 
+		case 1:
+			cliente(cuit).getArs().transferir( lector.encontrarCuenta(alias), -monto);
+			break;
 		
-	
-	
+		case 2:
+			cliente(cuit).getCC().transferir(lector.encontrarCuenta(alias), -monto);
+			break;
 		
-		
-		
-		
-		
-		
-		
-		
-	
+		}
+
+
+
+	}
 
 
 }

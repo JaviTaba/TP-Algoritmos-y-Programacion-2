@@ -130,6 +130,27 @@ public class MensajesATM {
 		System.out.println("");
 	}
 	
+	public void deseaRevertirLaTransferencia() {
+		System.out.println("");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("Para revertir la operacion ingrese 'REVERTIR'");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("De lo contrario, presione cualquier tecla para continuar");
+		System.out.println("-------------------------------------------------------");
+
+		System.out.println("");
+	}
+	
+	public void seRevirtioConExito() {
+		System.out.println("");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("Se revirtió la operación con éxito.");
+		System.out.println("-------------------------------------------------------");
+
+		System.out.println("");
+		
+	}
+	
 	
 	
 	

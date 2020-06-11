@@ -11,7 +11,7 @@ public abstract class Pesos extends Cuenta {
     }
     
     protected void transferir(Cuenta cuenta, double monto) throws ExcepcionTransaccion, ExcepcionCuenta {
-    	if(verificarMonto(monto)&& verificarSaldo(monto)) {
+    	if(verificarSaldo(monto)) {
     		this.extraer(monto);
     		cuenta.depositar(monto);
     		
