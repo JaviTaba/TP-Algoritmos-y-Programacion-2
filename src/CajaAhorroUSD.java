@@ -6,11 +6,5 @@ public class CajaAhorroUSD extends Cuenta{
         
     }
     
-    public void depositar(double monto) throws ExcepcionTransaccion {
-    	if(verificarMonto(monto)) {
-    		saldo+= monto;
- 
-    	}
-    }
     
 }

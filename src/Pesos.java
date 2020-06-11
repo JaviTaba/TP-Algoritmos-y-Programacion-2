@@ -10,10 +10,10 @@ public abstract class Pesos extends Cuenta {
 		}
     }
     
-    protected void transferir(String alias, double monto, ArchivoDeCuentas cuentas) throws ExcepcionTransaccion, ExcepcionCuenta {
+    protected void transferir(Cuenta cuenta, double monto) throws ExcepcionTransaccion, ExcepcionCuenta {
     	if(verificarMonto(monto)&& verificarSaldo(monto)) {
     		this.extraer(monto);
-    		cuentas.encontrarCuenta(alias).depositar(monto);
+    		cuenta.depositar(monto);
     		
     	}
     }
