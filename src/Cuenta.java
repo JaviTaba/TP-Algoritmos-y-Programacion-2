@@ -26,7 +26,7 @@ public abstract class Cuenta {
 		if(verificarMonto(monto)) {
 			saldo += monto;
 	
-			//hay que agregar la parte de ticket y modificar el txt
+		
 
 		}
 	}

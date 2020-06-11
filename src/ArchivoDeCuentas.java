@@ -120,28 +120,4 @@ public class ArchivoDeCuentas {
 		
 	}
 
-	/**
-	 * private void modificarTxt(String alias, double nuevoSaldo) throws IOException {
-		FileWriter writer = new FileWriter("cuentas.txt");
-		
-		String linea = br.readLine();
-		int numeroDeLinea = 1;
-		while(linea !=null) {
-			String[] split = linea.split(",");
-			
-			if(split[1].equalsIgnoreCase(alias)) {
-				break;
-			}else {
-			linea = br.readLine();
-			}
-			
-		}
-		
-		writer.
-		
-		
-	}
-	 */
-
-
 }

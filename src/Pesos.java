@@ -20,15 +20,22 @@ public abstract class Pesos extends Cuenta {
     
     protected void comprarUSD(Cliente cliente,double monto) throws ExcepcionTransaccion {
 		double montoConImpuesto = monto*1.3;
-		if(verificarMonto(monto) && verificarSaldo(montoConImpuesto) && cliente.getUSD()!= null) {
-			
-			saldo-= montoConImpuesto*this.dolar;
-			cliente.getUSD().saldo += monto;
-			
-			
-			
-			//hay que agregar la parte de ticket y modificar el txt
-			
+		if(cliente.getUSD()!= null) {
+			if(verificarSaldo(montoConImpuesto)) {
+				
+				saldo-= montoConImpuesto*this.dolar;
+				cliente.getUSD().saldo += monto;
+				
+				
+				
+	
+				
+			}
+				
+		}else {
+			throw new ExcepcionTransaccion("Usted no posee una Caja de Ahorro en USD");
+		
+		
 		}
 	}
     

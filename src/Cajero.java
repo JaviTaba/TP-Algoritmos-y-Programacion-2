@@ -11,12 +11,14 @@ public class Cajero implements Reversible{
 	private Long cuit;
 	private Tarjeta tarjeta;
 	private Ticket ticket;
+	private ModificarTxts modificarTxts;
 
 	public Cajero() throws IOException {
 		lector = new ArchivoDeCuentas();
 		mensaje = new MensajesATM();
 		sc = new Scanner(System.in);
 		ticket = new Ticket();
+		modificarTxts = new ModificarTxts();
 
 	}
 	public void iniciar() throws ExcepcionTarjeta, ExcepcionTransaccion, IOException, ExcepcionCuenta {
@@ -81,6 +83,8 @@ public class Cajero implements Reversible{
 		if(yesOrNo.equalsIgnoreCase("Y")) {
 			cuerpoCajero();
 		}else {
+			ticket.crearTicket();
+			ticket.imprimirTicket();
 			mensaje.adios();
 		}
 
@@ -105,6 +109,7 @@ public class Cajero implements Reversible{
 				cliente(cuit).getArs().extraer(monto);
 				dispensar(monto);
 				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+				//modificarTxts.modificarCuentas(lector, lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias(),lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo()-monto);
 				break;
 
 			case 2:
@@ -115,7 +120,9 @@ public class Cajero implements Reversible{
 			}
 
 		}else {
-			System.out.println("El monto a extraer debe ser multiplo de 100");
+			System.out.println("-------------------------------------------------------");
+			System.out.println("Error: El monto a extraer debe ser multiplo de 100");
+			System.out.println("-------------------------------------------------------");
 			extraerEfectivo1(cuenta);
 
 		}
@@ -125,44 +132,62 @@ public class Cajero implements Reversible{
 		int cuenta = sc.nextInt();
 		mensaje.comprarUSDMonto();
 		int monto = sc.nextInt();
+		
+		if(monto>0) {
+			switch(cuenta) {
 
-		switch(cuenta) {
+			case 1:
+				cliente(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
+				ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+				break;
 
-		case 1:
-			cliente(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
-			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
-			break;
+			case 2:
+				cliente(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
+				ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				break;
 
-		case 2:
-			cliente(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
-			ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
-			break;
-
+			}
+		}else {
+			System.out.println("-------------------------------------------------------");
+			System.out.println("ERROR: El monto debe ser mayor a 0");
+			System.out.println("-------------------------------------------------------");
+			comprarUSD();
 		}
+
+		
 	}
 	private void depositarEfectivo() throws ExcepcionTransaccion,IOException {
 		mensaje.depositarEfectivo();
 		int cuenta = sc.nextInt();
 		mensaje.depositarEfectivoMonto();
 		int monto = sc.nextInt();
+		
+		if(monto>0) {
+			switch(cuenta) {
 
-		switch(cuenta) {
+			case 1:
+				cliente(cuit).getArs().depositar(monto);
+				ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+				break;
 
-		case 1:
-			cliente(cuit).getArs().depositar(monto);
-			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
-			break;
+			case 2:
+				cliente(cuit).getCC().depositar(monto);
+				ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				break;
 
-		case 2:
-			cliente(cuit).getCC().depositar(monto);
-			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
-			break;
-
-		case 3:
-			cliente(cuit).getUSD().depositar(monto);
-			ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD(), monto);
-			break;
+			case 3:
+				cliente(cuit).getUSD().depositar(monto);
+				ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD(), monto);
+				break;
+			}
+		}else {
+			System.out.println("-------------------------------------------------------");
+			System.out.println("Error: El monto debe ser mayor a 0.");
+			System.out.println("-------------------------------------------------------");
+			depositarEfectivo();
 		}
+
+	
 
 
 	}
@@ -181,6 +206,7 @@ public class Cajero implements Reversible{
 
 			case 1:
 				cliente(cuit).getArs().transferir( lector.encontrarCuenta(alias), monto);
+				mensaje.operacionCorrecta();
 				mensaje.deseaRevertirLaTransferencia();
 				String revertir = sc.next();
 				if(revertir.equalsIgnoreCase("REVERTIR")){
@@ -195,6 +221,7 @@ public class Cajero implements Reversible{
 
 			case 2:
 				cliente(cuit).getCC().transferir(lector.encontrarCuenta(alias), monto);
+				mensaje.operacionCorrecta();
 				mensaje.deseaRevertirLaTransferencia();
 				String revertir1 = sc.next();
 				if(revertir1.equalsIgnoreCase("REVERTIR")){
@@ -213,7 +240,9 @@ public class Cajero implements Reversible{
 			
 			
 		}else {
-			System.out.println("El monto debe ser mayor a 0.");
+			System.out.println("-------------------------------------------------------");
+			System.out.println("ERROR: El monto debe ser mayor a 0.");
+			System.out.println("-------------------------------------------------------");
 			transferencia();
 
 		}
