@@ -5,7 +5,7 @@ public abstract class Pesos extends Cuenta {
     }
     
     protected void extraer(double monto) throws ExcepcionTransaccion {
-    	if(verificarMonto(monto) && verificarSaldo(saldo)) {
+    	if(verificarMonto(monto) && verificarSaldo(monto)) {
 			saldo -= monto;
 		}
     }

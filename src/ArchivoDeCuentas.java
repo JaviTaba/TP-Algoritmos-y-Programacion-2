@@ -1,12 +1,15 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
 public class ArchivoDeCuentas {
 	private ArchivoDeClientes clientes;
 	private ArchivoDeTarjetas tarjetas;
+	private BufferedReader br;
 	
 	
 	public ArchivoDeCuentas() {
@@ -54,7 +57,8 @@ public class ArchivoDeCuentas {
 	private void lectorDeCuentas() {
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("cuentas.txt"));
+			br = new BufferedReader(new FileReader("cuentas.txt"));
+			
 			
 			try {
 			
@@ -115,7 +119,29 @@ public class ArchivoDeCuentas {
 		
 		
 	}
-	
+
+	/**
+	 * private void modificarTxt(String alias, double nuevoSaldo) throws IOException {
+		FileWriter writer = new FileWriter("cuentas.txt");
+		
+		String linea = br.readLine();
+		int numeroDeLinea = 1;
+		while(linea !=null) {
+			String[] split = linea.split(",");
+			
+			if(split[1].equalsIgnoreCase(alias)) {
+				break;
+			}else {
+			linea = br.readLine();
+			}
+			
+		}
+		
+		writer.
+		
+		
+	}
+	 */
 
 
 }
