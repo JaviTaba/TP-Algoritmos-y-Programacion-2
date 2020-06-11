@@ -29,7 +29,7 @@ public class MensajesATM {
 		System.out.println("1.- Extraer efectivo");
 		System.out.println("2.- Comprar USD");
 		System.out.println("3.- Depositar efectivo");
-		System.out.println("4.- Transferencia entre sus cuentas");
+		System.out.println("4.- Transferir desde su cuenta");
 		
 	}
 	
@@ -117,6 +117,16 @@ public class MensajesATM {
 		System.out.println("");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Digite el monto que desea transferir:");
+		System.out.println("");
+	}
+	
+	public void desdeQueCuentaDeseaTransferir() {
+		System.out.println("");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("Seleccione la cuenta desde la cual desea transferir:");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("1- Caja de Ahorro en Pesos");
+		System.out.println("2- Cuenta Corriente");
 		System.out.println("");
 	}
 	

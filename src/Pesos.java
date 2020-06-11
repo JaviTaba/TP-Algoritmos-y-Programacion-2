@@ -10,8 +10,12 @@ public abstract class Pesos extends Cuenta {
 		}
     }
     
-    protected void transferir(String alias, double monto) {
-    	
+    protected void transferir(String alias, double monto, ArchivoDeCuentas cuentas) throws ExcepcionTransaccion, ExcepcionCuenta {
+    	if(verificarMonto(monto)&& verificarSaldo(monto)) {
+    		this.extraer(monto);
+    		cuentas.encontrarCuenta(alias).depositar(monto);
+    		
+    	}
     }
     
     protected void comprarUSD(Cliente cliente,double monto) throws ExcepcionTransaccion {
@@ -28,15 +32,7 @@ public abstract class Pesos extends Cuenta {
 		}
 	}
     
-    protected void depositar(double monto) throws ExcepcionTransaccion {
-		if(verificarMonto(monto)) {
-			saldo += monto;
-	
-			//hay que agregar la parte de ticket y modificar el txt
-
-		}
-	}
-    
+   
     
     
 

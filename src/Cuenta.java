@@ -22,6 +22,14 @@ public abstract class Cuenta {
        
     }
     
+    protected void depositar(double monto) throws ExcepcionTransaccion {
+		if(verificarMonto(monto)) {
+			saldo += monto;
+	
+			//hay que agregar la parte de ticket y modificar el txt
+
+		}
+	}
     
     
     /**

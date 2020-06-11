@@ -19,7 +19,7 @@ public class Cajero {
 		ticket = new Ticket();
 		
 	}
-	public void iniciar() throws ExcepcionTarjeta, ExcepcionTransaccion, IOException {
+	public void iniciar() throws ExcepcionTarjeta, ExcepcionTransaccion, IOException, ExcepcionCuenta {
 		
 		
 		mensaje.bienvenidaYTarjeta();
@@ -55,7 +55,7 @@ public class Cajero {
 	
 	
 	
-	private void cuerpoCajero() throws ExcepcionTransaccion, IOException {
+	private void cuerpoCajero() throws ExcepcionTransaccion, IOException, ExcepcionCuenta {
 		mensaje.queOperacionDeseaHacer();
 		int operacion = sc.nextInt();
 		
@@ -86,29 +86,39 @@ public class Cajero {
 		
 	}
 	
-
-	private void extraerEfectivo() throws ExcepcionTransaccion, IOException {
-
+	private void extraerEfectivo() throws ExcepcionTransaccion, IOException{
 		mensaje.extraerEfectivo();
 		int cuenta = sc.nextInt();
+		extraerEfectivo1(cuenta);
+	}
+	private void extraerEfectivo1(int cuenta) throws ExcepcionTransaccion, IOException {
+
+	
 		mensaje.extraerEfectivoMonto();
 		int monto = sc.nextInt();
 		
-		switch(cuenta) {
-		
-		case 1:
-			lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto);
-			dispensar(monto);
-			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
-			break;
+		if(monto%100==0) {
+
+			switch(cuenta) {
 			
-		case 2:
-			lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto);
-			dispensar(monto);
-			ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
-			break;
-		}
+			case 1:
+				lector.getTarjetas().getCuitCliente().get(cuit).getArs().extraer(monto);
+				dispensar(monto);
+				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+				break;
+				
+			case 2:
+				lector.getTarjetas().getCuitCliente().get(cuit).getCC().extraer(monto);
+				dispensar(monto);
+				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				break;
+			}
 		
+		}else {
+			System.out.println("El monto a extraer debe ser multiplo de 100");
+			extraerEfectivo1(cuenta);
+			
+		}
 	}
 	private void comprarUSD() throws ExcepcionTransaccion, IOException {
 		mensaje.comprarUSD();
@@ -156,11 +166,29 @@ public class Cajero {
 		
 		
 	}
-	private void transferencia() {
+	private void transferencia() throws ExcepcionTransaccion, ExcepcionCuenta, IOException {
 		mensaje.transferir();
 		String alias = sc.next();
 		mensaje.transferirMonto();
 		double monto = sc.nextDouble();
+		mensaje.desdeQueCuentaDeseaTransferir();
+		int cuenta = sc.nextInt();
+		
+		switch(cuenta) {
+		
+		case 1:
+			lector.getTarjetas().getCuitCliente().get(cuit).getArs().transferir(alias, monto, lector);
+			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+			break;
+				
+		case 2:
+			lector.getTarjetas().getCuitCliente().get(cuit).getCC().transferir(alias, monto, lector);
+			ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+			break;
+			
+					
+		}
+		
 		
 		
 		
