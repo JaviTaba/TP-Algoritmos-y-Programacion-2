@@ -15,6 +15,8 @@ public abstract class Pesos extends Cuenta {
     		this.extraer(monto);
     		cuenta.depositar(monto);
     		
+    	}else {
+    		throw new ExcepcionTransaccion("Usted no posee el saldo suficiente para realizar esta transferencia");
     	}
     }
     
