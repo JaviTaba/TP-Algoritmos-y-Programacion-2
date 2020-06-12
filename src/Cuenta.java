@@ -17,7 +17,7 @@ public abstract class Cuenta {
       	
        this.alias = alias;
        this.saldo = saldo;
-       dolar = 130;
+       dolar = 70;
        movimientos = new Stack<Ticket>();
        
     }

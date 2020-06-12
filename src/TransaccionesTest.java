@@ -28,5 +28,14 @@ public class TransaccionesTest {
 		Assert.assertEquals("transfiereCorrectamente100PesosDeUnaCuentaAOtra", -100.97, this.adc.getTarjetas().getCuitCliente().get(cuit1).getCC().getSaldo(), 0.01);
 		Assert.assertEquals("transfiereCorrectamente100PesosDeUnaCuentaAOtra", 50.0, this.adc.getTarjetas().getCuitCliente().get(cuit2).getArs().getSaldo(), 0.01);
 	}
+	
+	@Test
+	public void compraCorrectamente50DolaresDesdeUnaCajaDeAhorroEnPesos() throws ExcepcionTransaccion {
+		long cuit = this.adc.getClientes().getAliasCuit().get("isla.pez.arbol");
+		Cliente cliente = this.adc.getTarjetas().getCuitCliente().get(cuit);
+		this.adc.getTarjetas().getCuitCliente().get(cuit).getArs().comprarUSD(cliente, 50);
+		Assert.assertEquals("compraCorrectamente50DolaresDesdeUnaCajaDeAhorroEnPesos", 7450.03, this.adc.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo(), 0.01);
+		Assert.assertEquals("compraCorrectamente50DolaresDesdeUnaCajaDeAhorroEnPesos", 50.0, this.adc.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo(), 0.01);
+	}
 }
 

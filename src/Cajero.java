@@ -101,7 +101,7 @@ public class Cajero implements Reversible{
 		mensaje.extraerEfectivoMonto();
 		int monto = sc.nextInt();
 
-		if(monto%100==0) {
+		if(monto%100==0 && monto>0) {
 
 			switch(cuenta) {
 
@@ -149,7 +149,7 @@ public class Cajero implements Reversible{
 			}
 		}else {
 			System.out.println("-------------------------------------------------------");
-			System.out.println("ERROR: El monto debe ser mayor a 0");
+			System.out.println("Error: El monto debe ser mayor a 0");
 			System.out.println("-------------------------------------------------------");
 			comprarUSD();
 		}
@@ -241,7 +241,7 @@ public class Cajero implements Reversible{
 			
 		}else {
 			System.out.println("-------------------------------------------------------");
-			System.out.println("ERROR: El monto debe ser mayor a 0.");
+			System.out.println("Error: El monto debe ser mayor a 0.");
 			System.out.println("-------------------------------------------------------");
 			transferencia();
 

@@ -5,9 +5,11 @@ public abstract class Pesos extends Cuenta {
     }
     
     protected void extraer(double monto) throws ExcepcionTransaccion {
-    	if(verificarMonto(monto) && verificarSaldo(monto)) {
+    	if(verificarSaldo(monto)) {
 			saldo -= monto;
-		}
+		}else {
+    		throw new ExcepcionTransaccion("Usted no posee el saldo suficiente para realizar esta extraccón");
+    	}
     }
     
     protected void transferir(Cuenta cuenta, double monto) throws ExcepcionTransaccion, ExcepcionCuenta {
@@ -32,7 +34,9 @@ public abstract class Pesos extends Cuenta {
 				
 	
 				
-			}
+			}else {
+	    		throw new ExcepcionTransaccion("Usted no posee el saldo suficiente para realizar esta compra");
+	    	}
 				
 		}else {
 			throw new ExcepcionTransaccion("Usted no posee una Caja de Ahorro en USD");
