@@ -16,6 +16,8 @@ public class CuentaCorriente extends Pesos {
     	return "02";
     }
 	
+	
+	@Override
 	public double getDescubierto() {
 		return descubierto;
 	}

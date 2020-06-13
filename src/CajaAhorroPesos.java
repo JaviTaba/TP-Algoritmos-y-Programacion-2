@@ -11,5 +11,10 @@ public class CajaAhorroPesos extends Pesos{
     	return "01";
     }
 
+	@Override
+	protected double getDescubierto() {
+		return 0;
+	}
+
     
 }

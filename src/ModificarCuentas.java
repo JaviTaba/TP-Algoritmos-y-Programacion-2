@@ -6,11 +6,11 @@ import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
-public class ModificarTextos {
+public class ModificarCuentas {
 	
 	File archivo;
 	
-	public ModificarTextos() {
+	public ModificarCuentas() {
 		archivo = new File ("cuentas.txt");
 	}
 	
@@ -87,4 +87,8 @@ public class ModificarTextos {
 		}
 	 
 	}
+	
+	
+
+    
 }

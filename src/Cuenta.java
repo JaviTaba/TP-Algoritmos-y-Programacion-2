@@ -21,9 +21,9 @@ public abstract class Cuenta {
        
        
     }
-    protected String getTipoDeCuenta() {
-    	return null;
-    }
+    protected abstract String getTipoDeCuenta();
+    
+    protected abstract double getDescubierto();
     
     protected void depositar(double monto) throws ExcepcionTransaccion {
 		if(verificarMonto(monto)) {

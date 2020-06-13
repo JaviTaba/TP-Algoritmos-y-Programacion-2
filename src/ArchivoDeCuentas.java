@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class ArchivoDeCuentas {
 	private ArchivoDeClientes clientes;
@@ -29,6 +26,8 @@ public class ArchivoDeCuentas {
 	public ArchivoDeTarjetas getTarjetas() {
 		return tarjetas;
 	}
+	
+	
 	
 	public Cuenta encontrarCuenta(String alias) throws ExcepcionCuenta {
 		if(clientes.getAliasCuit().containsKey(alias)) {

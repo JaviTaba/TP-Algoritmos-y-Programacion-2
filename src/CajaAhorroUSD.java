@@ -20,6 +20,11 @@ public class CajaAhorroUSD extends Cuenta{
 
  		}
  	}
+
+	@Override
+	protected double getDescubierto() {
+		return 0;
+	}
     
     
 }
