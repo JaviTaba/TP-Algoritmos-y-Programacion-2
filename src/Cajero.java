@@ -296,8 +296,18 @@ public class Cajero implements Reversible{
 					break;
 					
 				} else {
-				ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
-				break;
+					ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+					
+					String alias1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getAlias();
+					double antiguoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo();
+					double descubierto = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getDescubierto();
+					double nuevoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo() - monto;
+					
+					modificarTextos.modificarSaldo("02", alias1, antiguoSaldo, descubierto, nuevoSaldo);
+					
+					
+					
+					break;
 				}
 
 
