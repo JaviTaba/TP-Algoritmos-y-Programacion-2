@@ -5,6 +5,11 @@ public class CajaAhorroPesos extends Pesos{
     	super(alias, saldo);
     	
     }
+    
+    @Override
+    protected String getTipoDeCuenta() {
+    	return "01";
+    }
 
     
 }

@@ -7,6 +7,11 @@ public class CajaAhorroUSD extends Cuenta{
     }
     
     @Override
+    protected String getTipoDeCuenta() {
+    	return "03";
+    }
+    
+    @Override
     protected void depositar(double monto) throws ExcepcionTransaccion {
  		if(!(this == null)) {
  			saldo += monto;

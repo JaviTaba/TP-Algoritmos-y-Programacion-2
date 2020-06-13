@@ -11,6 +11,11 @@ public class CuentaCorriente extends Pesos {
 
 	}
 	
+	@Override
+    protected String getTipoDeCuenta() {
+    	return "02";
+    }
+	
 	public double getDescubierto() {
 		return descubierto;
 	}
