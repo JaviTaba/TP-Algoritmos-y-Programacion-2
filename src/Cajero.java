@@ -11,14 +11,14 @@ public class Cajero implements Reversible{
 	private Long cuit;
 	private Tarjeta tarjeta;
 	private Ticket ticket;
-	private ModificarTxts modificarTxts;
+	private ModificarTextos modificarTextos;
 
 	public Cajero() throws IOException {
 		lector = new ArchivoDeCuentas();
 		mensaje = new MensajesATM();
 		sc = new Scanner(System.in);
 		ticket = new Ticket();
-		modificarTxts = new ModificarTxts();
+		modificarTextos = new ModificarTextos();
 
 	}
 	public void iniciar() throws ExcepcionTarjeta, ExcepcionTransaccion, IOException, ExcepcionCuenta {
@@ -94,6 +94,7 @@ public class Cajero implements Reversible{
 		mensaje.extraerEfectivo();
 		int cuenta = sc.nextInt();
 		extraerEfectivo1(cuenta);
+		
 	}
 	private void extraerEfectivo1(int cuenta) throws ExcepcionTransaccion, IOException {
 
@@ -109,13 +110,25 @@ public class Cajero implements Reversible{
 				cliente(cuit).getArs().extraer(monto);
 				dispensar(monto);
 				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
-				//modificarTxts.modificarCuentas(lector, lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias(),lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo()-monto);
+				
+				String alias = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias();
+				double antiguoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo();
+				double nuevoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo()-monto;
+				
+				modificarTextos.modificarSaldo("01", alias, antiguoSaldo , 0, nuevoSaldo);
 				break;
 
 			case 2:
 				cliente(cuit).getCC().extraer(monto);
 				dispensar(monto);
 				ticket.extraer(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				
+				String alias1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getAlias();
+				double antiguoSaldo1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo();
+				double nuevoSaldo1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo()-monto;
+				double descubierto = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getDescubierto();
+				
+				modificarTextos.modificarSaldo("02", alias1, antiguoSaldo1, descubierto, nuevoSaldo1);
 				break;
 			}
 
@@ -139,11 +152,32 @@ public class Cajero implements Reversible{
 			case 1:
 				cliente(cuit).getArs().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
 				ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+				
+				String alias = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias();
+				double antiguoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo();
+				double nuevoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo() - (monto * lector.getTarjetas().getCuitCliente().get(cuit).getArs().dolar * 1.3);
+				modificarTextos.modificarSaldo("01", alias, antiguoSaldo, 0, nuevoSaldo);
+				
+				String aliasDolar = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getAlias();
+				double antiguoSaldoDolar = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo();
+				double nuevoSaldoDolar = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo() + monto;
+				modificarTextos.modificarSaldo("03", aliasDolar, antiguoSaldoDolar, 0, nuevoSaldoDolar);
 				break;
 
 			case 2:
 				cliente(cuit).getCC().comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit), monto);
 				ticket.comprarUSD(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				
+				String alias1 = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias();
+				double antiguoSaldo1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo();
+				double descubierto = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getDescubierto();
+				double nuevoSaldo1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo() - (monto * lector.getTarjetas().getCuitCliente().get(cuit).getArs().dolar * 1.3);
+				modificarTextos.modificarSaldo("02", alias1, antiguoSaldo1, descubierto, nuevoSaldo1);
+				
+				String aliasDolar1 = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getAlias();
+				double antiguoSaldoDolar1 = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo();
+				double nuevoSaldoDolar1 = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo() + monto;
+				modificarTextos.modificarSaldo("03", aliasDolar1, antiguoSaldoDolar1, 0, nuevoSaldoDolar1);
 				break;
 
 			}
@@ -168,16 +202,35 @@ public class Cajero implements Reversible{
 			case 1:
 				cliente(cuit).getArs().depositar(monto);
 				ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+				
+				String alias = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias();
+				double antiguoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo();
+				double nuevoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo() + monto;
+				
+				modificarTextos.modificarSaldo("01", alias, antiguoSaldo, 0, nuevoSaldo);
 				break;
 
 			case 2:
 				cliente(cuit).getCC().depositar(monto);
 				ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
+				
+				String alias1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getAlias();
+				double antiguoSaldo1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo();
+				double descubierto = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getDescubierto();
+				double nuevoSaldo1 = lector.getTarjetas().getCuitCliente().get(cuit).getCC().getSaldo() + monto;
+				
+				modificarTextos.modificarSaldo("02", alias1, antiguoSaldo1, descubierto, nuevoSaldo1);
 				break;
 
 			case 3:
 				cliente(cuit).getUSD().depositar(monto);
 				ticket.depositar(lector.getTarjetas().getCuitCliente().get(cuit).getUSD(), monto);
+				
+				String aliasDolar = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getAlias();
+				double antiguoSaldoDolar = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo();
+				double nuevoSaldoDolar = lector.getTarjetas().getCuitCliente().get(cuit).getUSD().getSaldo() + monto;
+				
+				modificarTextos.modificarSaldo("03", aliasDolar, antiguoSaldoDolar, 0, nuevoSaldoDolar);
 				break;
 			}
 		}else {
@@ -209,12 +262,24 @@ public class Cajero implements Reversible{
 				mensaje.operacionCorrecta();
 				mensaje.deseaRevertirLaTransferencia();
 				String revertir = sc.next();
+				
 				if(revertir.equalsIgnoreCase("REVERTIR")){
 					revertirTransferencia(1, monto, alias);
 					mensaje.seRevirtioConExito();
 					break;
-				}else {
+					
+				} else {
 					ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getArs(), monto);
+					
+					String alias1 = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getAlias();
+					double antiguoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo();
+					double nuevoSaldo = lector.getTarjetas().getCuitCliente().get(cuit).getArs().getSaldo() - monto;
+					
+					modificarTextos.modificarSaldo("01", alias1, antiguoSaldo, 0, nuevoSaldo);
+					
+					
+					
+					
 					break;
 				}
 				
@@ -224,11 +289,13 @@ public class Cajero implements Reversible{
 				mensaje.operacionCorrecta();
 				mensaje.deseaRevertirLaTransferencia();
 				String revertir1 = sc.next();
+				
 				if(revertir1.equalsIgnoreCase("REVERTIR")){
 					revertirTransferencia(2, monto, alias);
 					mensaje.seRevirtioConExito();
 					break;
-				}else {
+					
+				} else {
 				ticket.transferir(lector.getTarjetas().getCuitCliente().get(cuit).getCC(), monto);
 				break;
 				}

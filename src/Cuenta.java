@@ -1,4 +1,4 @@
-import java.util.Stack;
+
 
 public abstract class Cuenta {
 	
@@ -7,7 +7,7 @@ public abstract class Cuenta {
     protected String alias;
     protected double saldo;
     protected double dolar;
-    protected Stack<Ticket> movimientos;
+    
     
     public Cuenta (String alias, double saldo) throws ExcepcionCuenta {
     	
@@ -18,7 +18,7 @@ public abstract class Cuenta {
        this.alias = alias;
        this.saldo = saldo;
        dolar = 70;
-       movimientos = new Stack<Ticket>();
+       
        
     }
     

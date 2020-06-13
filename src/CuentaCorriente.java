@@ -10,7 +10,11 @@ public class CuentaCorriente extends Pesos {
 
 
 	}
-
+	
+	public double getDescubierto() {
+		return descubierto;
+	}
+	
 	@Override
 	protected boolean verificarSaldo(double monto) {
 		if (saldo>=(monto-descubierto)) {
